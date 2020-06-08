@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { settings } from '@/server.settings'
 
 Vue.use(Vuex)
 
@@ -14,7 +15,7 @@ export default new Vuex.Store({
   },
   actions: {
     async fetchProducts ({ commit }) {
-      const response = await fetch('http://localhost:1337/products')
+      const response = await fetch(settings.url + '/products')
       const products = await response.json()
       commit('SET_PRODUCTS', products)
     }
