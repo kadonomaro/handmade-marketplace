@@ -6,14 +6,25 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    categories: [],
     products: []
   },
   mutations: {
+    SET_CATEGORIES (state, categories) {
+      state.categories = categories
+    },
+
     SET_PRODUCTS (state, products) {
       state.products = products
     }
   },
   actions: {
+    async fetchCategories ({ commit }) {
+      const response = await fetch(settings.url + '/categories')
+      const categories = await response.json()
+      commit('SET_CATEGORIES', categories)
+    },
+
     async fetchProducts ({ commit }) {
       const response = await fetch(settings.url + '/products')
       const products = await response.json()
@@ -21,6 +32,10 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    getCategories (state) {
+      return state.categories
+    },
+
     getProducts (state) {
       return state.products
     }
