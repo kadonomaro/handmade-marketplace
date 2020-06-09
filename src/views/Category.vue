@@ -1,17 +1,17 @@
 <template>
   <div class="category">
-    <product-list />
+    <cat-list />
   </div>
 </template>
 
 <script>
 
-import ProductList from '@/components/Product/ProductList.vue'
+import CatList from '@/components/Category/CatList.vue'
 
 export default {
   name: 'category',
   components: {
-    ProductList
+    CatList
   }
 }
 </script>
