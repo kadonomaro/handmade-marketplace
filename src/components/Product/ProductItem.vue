@@ -11,7 +11,7 @@
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam, nesciunt.</p>
     </div>
     <div class="product-card__info">
-      <span class="product-card__price">{{ product.price }}</span>
+      <span class="product-card__price">{{ product.price | currency('rub') }}</span>
       <button class="button product-card__button">В корзину</button>
     </div>
   </div>
