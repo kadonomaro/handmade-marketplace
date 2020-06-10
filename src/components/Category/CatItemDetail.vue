@@ -27,8 +27,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getCategoryById',
-      'getProducts'
+      'getCategoryById'
     ]),
     category () {
       return this.getCategoryById(this.$route.params.id)

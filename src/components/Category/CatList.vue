@@ -1,6 +1,6 @@
 <template>
-  <div class="categories-list">
-    <div class="categories-list__item" v-for="cat in getCategories" :key="cat.id">
+  <div class="cat-list">
+    <div class="cat-list__item" v-for="cat in getCategories" :key="cat.id">
       <cat-item :category="cat" />
     </div>
   </div>
@@ -33,9 +33,13 @@ export default {
 </script>
 
 <style lang="scss">
-  .categories-list {
+  .cat-list {
     display: flex;
     flex-wrap: wrap;
+
+    /* temporary styles */
+    max-width: 1200px;
+    margin: 0 auto;
     &__item {
       flex-basis: 33.3333%;
       max-width: 33.3333%;

@@ -2,7 +2,7 @@
   <div class="product">
     <div>{{ product.title }}</div>
     <div class="product__image">
-      <img :src="url + product.media[0].formats.large.url" alt="">
+      <img :src="url + (product.media[0].formats.large.url || product.media[0].url)" alt="">
     </div>
     <div class="product__info">
       <span class="product__price">{{ product.price }}</span>
