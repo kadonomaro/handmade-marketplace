@@ -38,10 +38,6 @@ export default new Vuex.Store({
 
     getCategoryById (state) {
       return (id) => state.categories.find(cat => cat.id === id)
-    },
-
-    getProducts (state) {
-      return state.products
     }
   },
   modules: {

@@ -1,6 +1,6 @@
 <template>
   <div class="product-list">
-    <div class="product-list__item" v-for="product in getProducts" :key="product.id">
+    <div class="product-list__item" v-for="product in products" :key="product.id">
       <product-item :product="product" />
     </div>
   </div>
@@ -8,20 +8,17 @@
 
 <script>
 import productItem from '@/components/Product/ProductItem.vue'
-import { mapGetters } from 'vuex'
 
 export default {
   name: 'product-list',
+  props: {
+    products: {
+      type: Array,
+      required: true
+    }
+  },
   components: {
     productItem
-  },
-  created () {
-    this.$store.dispatch('fetchProducts')
-  },
-  computed: {
-    ...mapGetters([
-      'getProducts'
-    ])
   }
 }
 </script>

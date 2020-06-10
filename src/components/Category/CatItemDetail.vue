@@ -1,8 +1,8 @@
 <template>
   <div class="category">
     <div>
-      <img :src="url + category.preview_image.url" :alt="category.name">
       <span>{{ category.name }}</span>
+      <product-list :products="category.products"/>
     </div>
   </div>
 </template>
@@ -10,23 +10,30 @@
 <script>
 import { mapGetters } from 'vuex'
 import { settings } from '@/server.settings'
+import ProductList from '@/components/Product/ProductList.vue'
 
 export default {
   name: 'cat-item-detail',
+  components: {
+    ProductList
+  },
   data () {
     return {
       url: settings.url
     }
   },
+  created () {
+    this.$store.dispatch('fetchProducts')
+  },
   computed: {
     ...mapGetters([
-      'getCategoryById'
+      'getCategoryById',
+      'getProducts'
     ]),
     category () {
       return this.getCategoryById(this.$route.params.id)
     }
   }
-
 }
 </script>
 
