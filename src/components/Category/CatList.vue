@@ -1,20 +1,21 @@
 <template>
   <div class="categories-list">
     <div class="categories-list__item" v-for="cat in getCategories" :key="cat.id">
-        <div>
-          <img :src="url + cat.preview_image.url" :alt="cat.name">
-          <span>{{ cat.name }}</span>
-        </div>
+      <cat-item :category="cat" />
     </div>
   </div>
 </template>
 
 <script>
+import CatItem from '@/components/Category/CatItem.vue'
 import { settings } from '@/server.settings'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'cat-list',
+  components: {
+    CatItem
+  },
   data () {
     return {
       url: settings.url
