@@ -1,7 +1,7 @@
 <template>
     <router-link
       class="cat-item"
-      :to="{ name: 'CatItemDetail', params: { id: category.id }}"
+      :to="{ name: 'CatItemDetail', params: { name: category.name.toLowerCase() }}"
     >
       <div class="cat-item__image">
         <img class="cat-item__image-img" :src="url + category.preview_image.url" :alt="category.name">

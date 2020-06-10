@@ -27,10 +27,10 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getCategoryById'
+      'getCategoryByName'
     ]),
     category () {
-      return this.getCategoryById(this.$route.params.id)
+      return this.getCategoryByName(this.$route.params.name)
     }
   }
 }
