@@ -1,14 +1,21 @@
 <template>
-  <div class="product">
-    <div>{{ product.title }}</div>
-    <div class="product__image">
-      <img :src="url + (product.media[0].formats.large.url || product.media[0].url)" alt="">
+  <div class="product-card">
+    <router-link to="/" class="product-card__link">
+      <img
+        class="product-card__img"
+        :src="url + (product.media[0].formats.large.url || product.media[0].url)"
+        :alt="product.title">
+    </router-link>
+    <span class="product-card__title">{{ product.title }}</span>
+    <div class="product-card__desc">
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam, nesciunt.</p>
     </div>
-    <div class="product__info">
-      <span class="product__price">{{ product.price }}</span>
-      <button>Купить</button>
+    <div class="product-card__info">
+      <span class="product-card__price">{{ product.price }}</span>
+      <button class="button product-card__button">В корзину</button>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -31,16 +38,40 @@ export default {
 </script>
 
 <style lang="scss">
-  .product {
-    &__image {
-      img {
-        max-width: 100%;
-        width: 100%;
-      }
+@import '@/css/blocks/button.scss';
+
+  .product-card {
+
+    padding: 10px;
+    border: 1px solid #e6ecf1;
+    border-radius: 5px;
+    box-shadow: 0 3px 8px 0 rgba(#74818d, 0.1);
+    transition: color 0.1s ease-in, border-color 0.1s ease-in;
+    &:hover {
+      border-color: #48c4c8;
+    }
+    &__img {
+      display: block;
+      max-width: 100%;
+      width: 100%;
+    }
+    &__link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+    &__title {
+      display: block;
+      padding: 5px 0;
+      font-size: 18px;
+    }
+    &__info {
+      display: flex;
+      justify-content: space-between;
     }
     &__price {
       display: block;
-      font-size: 20px;
+      font-size: 24px;
       font-weight: bold;
     }
 

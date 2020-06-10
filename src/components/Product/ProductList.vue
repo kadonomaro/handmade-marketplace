@@ -28,8 +28,8 @@ export default {
     display: flex;
     flex-wrap: wrap;
     &__item {
-      flex-basis: 33.3333%;
-      max-width: 33.3333%;
+      flex-basis: 25%;
+      max-width: 25%;
       padding: 0 10px;
       box-sizing: border-box;
     }
