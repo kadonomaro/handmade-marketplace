@@ -1,9 +1,10 @@
 <template>
-  <div class="category">
+  <div class="category-item">
     <div>
       <img :src="url + category.preview_image.url" :alt="category.name">
       <span>{{ category.name }}{{ category.id }}</span>
     </div>
+    <button @click="$router.push({ name: 'CatItemDetail', params: {id: category.id} })">Click</button>
   </div>
 </template>
 
@@ -28,14 +29,5 @@ export default {
 </script>
 
 <style lang="scss">
-  .categories-list {
-    display: flex;
-    flex-wrap: wrap;
-    &__item {
-      flex-basis: 33.3333%;
-      max-width: 33.3333%;
-      padding: 0 10px;
-      box-sizing: border-box;
-    }
-  }
+
 </style>
