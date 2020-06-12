@@ -1,6 +1,9 @@
 <template>
   <div class="product-card">
-    <router-link to="/" class="product-card__link">
+    <router-link
+      :to="{ name: 'ProductDetail', params: { id: product.id }}"
+      class="product-card__link"
+    >
       <img
         class="product-card__img"
         :src="url + (product.media[0].formats.large.url || product.media[0].url)"
