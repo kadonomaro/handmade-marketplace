@@ -3,21 +3,30 @@
     <div class="product__inner">
       <div class="product__side">
         <div class="product__image">
-          <img :src="url + (product.media[0].formats.large.url || product.media[0].url)" alt="">
+          <img :src="media" alt="">
         </div>
       </div>
       <div class="product__main">
         <div class="product__info">
           <h1 class="product__title">{{ product.title }}</h1>
 
-          <div class="product__desc">
-            <h2>Описание</h2>
+          <div class="product__desc" v-if="product.description.length">
+            <span class="product__caption">Описание</span>
             <p>{{ product.description }}</p>
+          </div>
+
+          <div class="product__spec product-spec" v-if="product.spec.length">
+            <span class="product__caption">Характеристики</span>
+            <div class="product-spec__item" v-for="spec in product.spec" :key="spec.id">
+              <span class="product-spec__name">{{ spec.name }}</span>
+              <span class="product-spec__value">{{ spec.value }}</span>
+            </div>
           </div>
 
           <div class="product__price product-price">
             <span class="product-price__amount">{{ product.price | currency('rub') }}</span>
-            <button class="button product-price__button">В корзину</button>
+            <button class="button product-price__button" v-if="product.amount > 0">В корзину</button>
+            <span class="product-price__empty" v-else>Нет в наличии</span>
           </div>
 
         </div>
@@ -43,6 +52,9 @@ export default {
     ]),
     product () {
       return this.getProductById(this.$route.params.id)
+    },
+    media () {
+      return this.url + (this.product.media[0].formats.large.url || this.product.media[0].url)
     }
   }
 }
@@ -75,11 +87,47 @@ export default {
     &__title {
       margin: 0 0 10px;
     }
+    &__caption {
+      display: block;
+      margin-bottom: 10px;
+      color: #606060;
+      font-size: 18px;
+      line-height: 1;
+      font-weight: bold;
+    }
     &__desc {
-
+      margin-bottom: 20px;
+      p {
+        margin: 0;
+      }
+    }
+    &__spec {
+      max-width: 400px;
+      margin-bottom: 20px;
     }
     &__price {
       max-width: 400px;
+    }
+  }
+
+  .product-spec {
+    line-height: 1;
+    &__item {
+      display: flex;
+      margin-bottom: 10px;
+    }
+    &__name,
+    &__value {
+      display: block;
+    }
+    &__name {
+      display: flex;
+      flex-grow: 1;
+      &::after {
+        content: '';
+        flex-grow: 1;
+        border-bottom: 1px dotted #e6ecf1;
+      }
     }
   }
 
@@ -91,8 +139,10 @@ export default {
       font-size: 28px;
       font-weight: bold;
     }
-    &__button {
-
+    &__empty {
+      display: block;
+      font-size: 18px;
+      align-self: center;
     }
   }
 </style>
