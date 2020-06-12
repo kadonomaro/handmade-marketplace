@@ -44,7 +44,6 @@ export default {
 @import '@/css/blocks/button.scss';
 
   .product-card {
-
     padding: 10px;
     border: 1px solid #e6ecf1;
     border-radius: 5px;

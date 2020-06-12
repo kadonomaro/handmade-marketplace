@@ -20,7 +20,7 @@ const routes = [
     component: () => import('../components/Category/CatItemDetail.vue')
   },
   {
-    path: '/:id',
+    path: '/category/:name/:id',
     name: 'ProductDetail',
     component: () => import('../components/Product/ProductDetail.vue')
   }
