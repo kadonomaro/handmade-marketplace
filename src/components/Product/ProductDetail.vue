@@ -75,11 +75,7 @@ export default {
       max-width: 40%;
     }
     &__image {
-      img {
-        display: grid;
-        max-width: 100%;
-        width: 100%;
-      }
+
     }
     &__info {
       padding: 20px 40px;

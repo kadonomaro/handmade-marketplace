@@ -4,7 +4,7 @@
       :to="{ name: 'CatItemDetail', params: { name: category.name.toLowerCase() }}"
     >
       <div class="cat-item__image">
-        <img class="cat-item__image-img" :src="url + category.preview_image.url" :alt="category.name">
+        <img :src="url + category.preview_image.url" :alt="category.name">
       </div>
       <h2 class="cat-item__title">{{ category.display_name }}</h2>
     </router-link>
@@ -51,11 +51,6 @@ export default {
     }
     &__image {
       margin-bottom: 10px;
-    }
-    &__image-img {
-      display: block;
-      max-width: 100%;
-      width: 100%;
     }
   }
 </style>

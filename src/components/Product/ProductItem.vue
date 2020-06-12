@@ -5,7 +5,6 @@
       class="product-card__link"
     >
       <img
-        class="product-card__img"
         :src="url + (product.media[0].formats.large.url || product.media[0].url)"
         :alt="product.title">
     </router-link>
@@ -51,11 +50,6 @@ export default {
     transition: color 0.1s ease-in, border-color 0.1s ease-in;
     &:hover {
       border-color: #48c4c8;
-    }
-    &__img {
-      display: block;
-      max-width: 100%;
-      width: 100%;
     }
     &__link {
       display: block;
