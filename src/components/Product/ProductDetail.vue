@@ -18,7 +18,7 @@
           <div class="product__spec product-spec" v-if="product.spec.length">
             <span class="product__caption">Характеристики</span>
             <div class="product-spec__item" v-for="spec in product.spec" :key="spec.id">
-              <span class="product-spec__name">{{ spec.name }}</span>
+              <span class="product-spec__name">{{ spec.name | translate }}</span>
               <span class="product-spec__value">{{ spec.value }}</span>
             </div>
           </div>
