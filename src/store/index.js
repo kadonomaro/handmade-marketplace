@@ -39,20 +39,8 @@ export default new Vuex.Store({
     async fetchFilters ({ commit }) {
       const response = await fetch(settings.url + '/content-manager/components/product.spec')
       const filters = await response.json()
-
       const data = filters.data.component.schema.attributes.name.enum
-      const obj = Object.fromEntries(data.map(key => [key, { name: key, values: [] }]))
-
-      this.state.products.forEach(product => {
-        product.spec.forEach(spec => {
-          const values = obj[spec.name].values
-          if (values && !values.includes(spec.value)) {
-            values.push(spec.value)
-          }
-        })
-      })
-
-      commit('SET_FILTERS', obj)
+      commit('SET_FILTERS', data)
     }
   },
   getters: {
