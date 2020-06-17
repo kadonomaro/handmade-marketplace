@@ -3,6 +3,8 @@
     <div>
       <span>{{ category.name }}</span>
       <product-list :products="category.products"/>
+
+      <pre>{{ getFilters }}</pre>
     </div>
   </div>
 </template>
@@ -24,10 +26,12 @@ export default {
   },
   created () {
     this.$store.dispatch('fetchProducts')
+    this.$store.dispatch('fetchFilters')
   },
   computed: {
     ...mapGetters([
-      'getCategoryByName'
+      'getCategoryByName',
+      'getFilters'
     ]),
     category () {
       return this.getCategoryByName(this.$route.params.name)

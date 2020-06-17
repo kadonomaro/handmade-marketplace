@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     categories: [],
-    products: []
+    products: [],
+    filters: []
   },
   mutations: {
     SET_CATEGORIES (state, categories) {
@@ -16,6 +17,10 @@ export default new Vuex.Store({
 
     SET_PRODUCTS (state, products) {
       state.products = products
+    },
+
+    SET_FILTERS (state, filters) {
+      state.filters = filters
     }
   },
   actions: {
@@ -29,6 +34,12 @@ export default new Vuex.Store({
       const response = await fetch(settings.url + '/products')
       const products = await response.json()
       commit('SET_PRODUCTS', products)
+    },
+
+    async fetchFilters ({ commit }) {
+      const response = await fetch(settings.url + '/content-manager/components/product.spec')
+      const filters = await response.json()
+      commit('SET_FILTERS', filters.data.component.schema.attributes.name.enum)
     }
   },
   getters: {
@@ -42,6 +53,10 @@ export default new Vuex.Store({
 
     getProductById (state) {
       return (id) => state.products.find(product => product.id === id)
+    },
+
+    getFilters (state) {
+      return state.filters
     }
   },
   modules: {
