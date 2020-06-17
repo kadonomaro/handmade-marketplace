@@ -4,7 +4,18 @@
       <span>{{ category.name }}</span>
       <product-list :products="category.products"/>
 
-      <pre>{{ getFilters }}</pre>
+      <div class="product-filters">
+        <div class="product-filters__item" v-for="(filter, index) in filters" :key="index">
+          <div class="name">{{ filter.name | translate }}</div>
+          <div class="values" v-for="(value, index) in filter.values" :key="index">
+            <label>
+              <input type="checkbox" :value="value">
+              <span>{{ value }}</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -35,6 +46,9 @@ export default {
     ]),
     category () {
       return this.getCategoryByName(this.$route.params.name)
+    },
+    filters () {
+      return this.getFilters
     }
   }
 }

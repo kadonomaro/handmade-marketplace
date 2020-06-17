@@ -41,7 +41,7 @@ export default new Vuex.Store({
       const filters = await response.json()
 
       const data = filters.data.component.schema.attributes.name.enum
-      const obj = Object.fromEntries(data.map(key => [key, { values: [] }]))
+      const obj = Object.fromEntries(data.map(key => [key, { name: key, values: [] }]))
 
       this.state.products.forEach(product => {
         product.spec.forEach(spec => {
