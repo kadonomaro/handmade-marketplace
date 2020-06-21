@@ -5,17 +5,7 @@
 
       <div class="category__inner">
         <aside class="category__filter">
-          <div class="product-filters">
-            <div class="product-filters__item" v-for="(filter, index) in filters" :key="index">
-              <div class="name">{{ filter.name | translate }}</div>
-              <div class="values" v-for="(value, index) in filter.values" :key="index">
-                <label>
-                  <input type="checkbox" :value="value">
-                  <span>{{ value }}</span>
-                </label>
-              </div>
-            </div>
-          </div>
+          <product-filter :values="getFilters" :products="category.products" />
         </aside>
 
         <main class="category__main">
@@ -31,11 +21,13 @@
 import { mapGetters } from 'vuex'
 import { settings } from '@/server.settings'
 import ProductList from '@/components/Product/ProductList.vue'
+import ProductFilter from '@/components/Product/ProductFilter.vue'
 
 export default {
   name: 'cat-item-detail',
   components: {
-    ProductList
+    ProductList,
+    ProductFilter
   },
   data () {
     return {
@@ -53,18 +45,6 @@ export default {
     ]),
     category () {
       return this.getCategoryByName(this.$route.params.name)
-    },
-    filters () {
-      const obj = Object.fromEntries(this.getFilters.map(key => [key, { name: key, values: [] }]))
-      this.category.products.forEach(product => {
-        product.spec.forEach(spec => {
-          const values = obj[spec.name].values
-          if (values && !values.includes(spec.value)) {
-            values.push(spec.value)
-          }
-        })
-      })
-      return obj
     }
   }
 }
@@ -78,6 +58,7 @@ export default {
     &__filter {
       flex-basis: 250px;
       flex-shrink: 0;
+      padding-right: 20px;
     }
     &__main {
       flex-grow: 1;
