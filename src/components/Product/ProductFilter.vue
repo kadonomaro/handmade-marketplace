@@ -1,12 +1,12 @@
 <template>
-  <div class="product-filter">
+  <div class="product-filter" v-if="values.length">
     <form class="product-filter__form" @submit.prevent="onSubmit">
       <div class="product-filter__item" v-for="(filter, index) in getfilters" :key="index">
         <div class="filter-item" v-if="filter.values.length">
           <div class="name">{{ filter.name | translate }}</div>
           <div class="values" v-for="(value, index) in filter.values" :key="index">
             <label>
-              <input type="checkbox" :value="value">
+              <input type="checkbox" :value="value" v-model="filters[filter.name].values">
               <span>{{ value }}</span>
             </label>
           </div>
@@ -32,12 +32,21 @@ export default {
   },
   data () {
     return {
-      filters: ''
+      filters: {}
     }
+  },
+  mounted () {
+    this.updateFilters()
   },
   methods: {
     onSubmit () {
-      console.log('submit')
+      this.$emit('on-filter', this.filters)
+    },
+
+    updateFilters () {
+      if (this.values.length) {
+        this.filters = Object.fromEntries(this.values.map(key => [key, { name: key, values: [] }]))
+      }
     }
   },
   computed: {
