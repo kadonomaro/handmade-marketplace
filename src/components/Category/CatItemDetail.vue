@@ -5,11 +5,12 @@
 
       <div class="category__inner">
         <aside class="category__filter">
-          <product-filter :values="getFilters" :products="category.products" />
+          <product-filter :values="getFilters" :products="category.products" @on-filter="setFilters" />
         </aside>
 
         <main class="category__main">
           <product-list :products="category.products"/>
+          <product-list :products="products"/>
         </main>
       </div>
 
@@ -31,12 +32,18 @@ export default {
   },
   data () {
     return {
-      url: settings.url
+      url: settings.url,
+      filters: {}
     }
   },
   created () {
     this.$store.dispatch('fetchProducts')
     this.$store.dispatch('fetchFilters')
+  },
+  methods: {
+    setFilters (payload) {
+      this.filters = payload
+    }
   },
   computed: {
     ...mapGetters([
@@ -45,6 +52,21 @@ export default {
     ]),
     category () {
       return this.getCategoryByName(this.$route.params.name)
+    },
+
+    products () {
+      if (Object.keys(this.filters).length) {
+        const products = []
+        this.category.products.forEach(product => {
+          product.spec.forEach(spec => {
+            if (this.filters[spec.name].values.includes(spec.value)) {
+              products.push(product)
+            }
+          })
+        })
+        return products
+      }
+      return this.category.products
     }
   }
 }
