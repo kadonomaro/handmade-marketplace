@@ -9,7 +9,6 @@
         </aside>
 
         <main class="category__main">
-          <product-list :products="category.products"/>
           <product-list :products="products"/>
         </main>
       </div>
@@ -33,16 +32,29 @@ export default {
   data () {
     return {
       url: settings.url,
-      filters: {}
+      products: []
     }
   },
   created () {
     this.$store.dispatch('fetchProducts')
     this.$store.dispatch('fetchFilters')
+    this.products = this.category.products
   },
   methods: {
     setFilters (payload) {
-      this.filters = payload
+      this.updateProducts(payload)
+    },
+
+    updateProducts (filter) {
+      const products = []
+      this.category.products.forEach(product => {
+        product.spec.forEach(spec => {
+          if (filter[spec.name].values.includes(spec.value)) {
+            products.push(product)
+          }
+        })
+      })
+      this.products = products
     }
   },
   computed: {
@@ -52,21 +64,6 @@ export default {
     ]),
     category () {
       return this.getCategoryByName(this.$route.params.name)
-    },
-
-    products () {
-      if (Object.keys(this.filters).length) {
-        const products = []
-        this.category.products.forEach(product => {
-          product.spec.forEach(spec => {
-            if (this.filters[spec.name].values.includes(spec.value)) {
-              products.push(product)
-            }
-          })
-        })
-        return products
-      }
-      return this.category.products
     }
   }
 }
