@@ -45,16 +45,21 @@ export default {
       this.updateProducts(payload)
     },
 
-    updateProducts (filter) {
+    updateProducts (filters) {
+      const isEmptyFilter = !Object.values(filters).some(filter => filter.values.length)
       const products = []
-      this.category.products.forEach(product => {
-        product.spec.forEach(spec => {
-          if (filter[spec.name].values.includes(spec.value)) {
-            products.push(product)
-          }
+      if (isEmptyFilter) {
+        this.products = this.category.products
+      } else {
+        this.category.products.forEach(product => {
+          product.spec.forEach(spec => {
+            if (filters[spec.name].values.includes(spec.value)) {
+              products.push(product)
+            }
+          })
         })
-      })
-      this.products = products
+        this.products = products
+      }
     }
   },
   computed: {
