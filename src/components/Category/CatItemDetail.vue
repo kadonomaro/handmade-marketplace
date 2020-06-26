@@ -5,7 +5,7 @@
 
       <div class="category__inner">
         <aside class="category__filter">
-          <product-filter :products="category.products" @on-filter="setFilters" />
+          <product-filter :products="category.products" @on-filter="onFilter" />
         </aside>
 
         <main class="category__main">
@@ -41,7 +41,7 @@ export default {
     this.products = this.category.products
   },
   methods: {
-    setFilters (payload) {
+    onFilter (payload) {
       this.updateProducts(payload)
     },
 
@@ -54,7 +54,10 @@ export default {
         this.category.products.forEach(product => {
           product.spec.forEach(spec => {
             if (filters[spec.name].values.includes(spec.value)) {
-              products.push(product)
+              const productsNames = products.map(product => product.title)
+              if (!productsNames.includes(product.title)) {
+                products.push(product)
+              }
             }
           })
         })
@@ -64,8 +67,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getCategoryByName',
-      'getFilters'
+      'getCategoryByName'
     ]),
     category () {
       return this.getCategoryByName(this.$route.params.name)
