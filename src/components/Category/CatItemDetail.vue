@@ -5,7 +5,7 @@
 
       <div class="category__inner">
         <aside class="category__filter">
-          <product-filter :values="getFilters" :products="category.products" @on-filter="setFilters" />
+          <product-filter :products="category.products" @on-filter="setFilters" />
         </aside>
 
         <main class="category__main">

@@ -1,7 +1,7 @@
 <template>
-  <div class="product-filter" v-if="values.length">
+  <div class="product-filter" v-if="getFilters.length">
     <form class="product-filter__form" @submit.prevent="onSubmit">
-      <div class="product-filter__item" v-for="(filter, index) in getfilters" :key="index">
+      <div class="product-filter__item" v-for="(filter, index) in computedFilters" :key="index">
         <div class="filter-item" v-if="filter.values.length">
           <div class="name">{{ filter.name | translate }}</div>
           <div class="values" v-for="(value, index) in filter.values" :key="index">
@@ -19,13 +19,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'product-filter',
   props: {
-    values: {
-      type: Array,
-      required: true
-    },
     products: {
       required: true
     }
@@ -44,14 +42,17 @@ export default {
     },
 
     updateFilters () {
-      if (this.values.length) {
-        this.filters = Object.fromEntries(this.values.map(key => [key, { name: key, values: [] }]))
+      if (this.getFilters.length) {
+        this.filters = Object.fromEntries(this.getFilters.map(key => [key, { name: key, values: [] }]))
       }
     }
   },
   computed: {
-    getfilters () {
-      const obj = Object.fromEntries(this.values.map(key => [key, { name: key, values: [] }]))
+    ...mapGetters([
+      'getFilters'
+    ]),
+    computedFilters () {
+      const obj = Object.fromEntries(this.getFilters.map(key => [key, { name: key, values: [] }]))
       this.products.forEach(product => {
         product.spec.forEach(spec => {
           const values = obj[spec.name].values
