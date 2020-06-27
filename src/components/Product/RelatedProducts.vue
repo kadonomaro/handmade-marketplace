@@ -1,5 +1,6 @@
 <template>
   <div class="related-products">
+    <h2 class="related-products__title">Похожие товары</h2>
     <div class="related-products__list">
       <div class="related-products__item" v-for="product in products" :key="product.id">
         <product-item :product="product"/>
@@ -34,6 +35,10 @@ export default {
 
 <style lang="scss">
   .related-products {
+    padding: 20px 0;
+    &__title {
+      margin: 0 0 10px;
+    }
     &__list {
       display: flex;
       flex-wrap: wrap;

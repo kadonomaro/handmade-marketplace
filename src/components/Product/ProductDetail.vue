@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <related-products :products="relatedProducts"/>
+    <related-products v-if="relatedProducts.length" :products="relatedProducts"/>
   </div>
 </template>
 
@@ -62,6 +62,8 @@ export default {
     },
     relatedProducts () {
       return this.getCategoryByName(this.product.category.name).products
+        .filter(product => product.title !== this.product.title)
+        .splice(0, 5)
     },
     media () {
       return this.url + (this.product.media[0].formats.large.url || this.product.media[0].url)
@@ -78,12 +80,12 @@ export default {
       margin-bottom: 30px;
     }
     &__main {
-      flex-basis: 60%;
-      max-width: 60%;
+      flex-basis: 65%;
+      max-width: 65%;
     }
     &__side {
-      flex-basis: 40%;
-      max-width: 40%;
+      flex-basis: 35%;
+      max-width: 35%;
     }
     &__image {
 

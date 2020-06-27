@@ -5,11 +5,11 @@
       class="product-card__link"
     >
       <img
-        :src="url + (product.media[0].formats.large.url || product.media[0].url)"
+        :src="url + (product.media[0].formats.small.url || product.media[0].url)"
         :alt="product.title">
     </router-link>
     <span class="product-card__title">{{ product.title }}</span>
-    <div class="product-card__desc">
+    <div v-if="expanded" class="product-card__desc">
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam, nesciunt.</p>
     </div>
     <div class="product-card__info">
@@ -29,6 +29,10 @@ export default {
     product: {
       type: Object,
       required: true
+    },
+    expanded: {
+      type: Boolean,
+      required: false
     }
   },
   data () {
