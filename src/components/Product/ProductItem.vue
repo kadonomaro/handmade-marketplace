@@ -10,7 +10,7 @@
     </router-link>
     <span class="product-card__title">{{ product.title }}</span>
     <div v-if="expanded" class="product-card__desc">
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam, nesciunt.</p>
+      <p>{{ description }}</p>
     </div>
     <div class="product-card__info">
       <span class="product-card__price">{{ product.price | currency('rub') }}</span>
@@ -39,6 +39,11 @@ export default {
     return {
       url: settings.url
     }
+  },
+  computed: {
+    description () {
+      return this.product.description.split('.')[0] + '.'
+    }
   }
 }
 </script>
@@ -47,11 +52,15 @@ export default {
 @import '@/css/blocks/button.scss';
 
   .product-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     padding: 10px;
     border: 1px solid #e6ecf1;
     border-radius: 5px;
     box-shadow: 0 3px 8px 0 rgba(#74818d, 0.1);
     transition: color 0.1s ease-in, border-color 0.1s ease-in;
+    box-sizing: border-box;
     &:hover {
       border-color: #48c4c8;
     }
@@ -64,6 +73,12 @@ export default {
       display: block;
       padding: 5px 0;
       font-size: 18px;
+    }
+    &__desc {
+      flex-grow: 1;
+      p {
+        margin: 0 0 10px;
+      }
     }
     &__info {
       display: flex;
