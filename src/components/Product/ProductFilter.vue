@@ -7,8 +7,9 @@
           <div class="filter-item__values" v-show="filters[filter.name].isOpen">
             <div class="filter-item__value" v-for="(value, index) in filter.values" :key="index">
               <label>
-                <input type="checkbox" :value="value" v-model="filters[filter.name].values">
-                <span>{{ value }}</span>
+                <input class="checkbox visually-hidden" type="checkbox" :value="value" v-model="filters[filter.name].values">
+                <span class="checkbox-custom"></span>
+                <span class="filter-item__value-text">{{ value }}</span>
               </label>
             </div>
           </div>
@@ -71,6 +72,8 @@ export default {
 </script>
 
 <style lang="scss">
+  @import '@/css/blocks/checkbox.scss';
+
   .product-filter {
     &__item {
       margin-bottom: 10px;
@@ -88,7 +91,10 @@ export default {
       border-radius: 5px;
     }
     &__value {
-
+      margin-bottom: 5px;
+    }
+    &__value-text {
+      vertical-align: middle;
     }
   }
 </style>
