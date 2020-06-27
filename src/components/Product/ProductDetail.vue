@@ -32,15 +32,21 @@
         </div>
       </div>
     </div>
+
+    <related-products :products="relatedProducts"/>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import { settings } from '@/server.settings'
+import RelatedProducts from '@/components/Product/RelatedProducts.vue'
 
 export default {
   name: 'product-detail',
+  components: {
+    RelatedProducts
+  },
   data () {
     return {
       url: settings.url
@@ -48,10 +54,14 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getProductById'
+      'getProductById',
+      'getCategoryByName'
     ]),
     product () {
       return this.getProductById(this.$route.params.id)
+    },
+    relatedProducts () {
+      return this.getCategoryByName(this.product.category.name).products
     },
     media () {
       return this.url + (this.product.media[0].formats.large.url || this.product.media[0].url)
@@ -65,6 +75,7 @@ export default {
     &__inner {
       display: flex;
       flex-wrap: wrap;
+      margin-bottom: 30px;
     }
     &__main {
       flex-basis: 60%;
