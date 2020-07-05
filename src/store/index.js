@@ -57,7 +57,16 @@ export default new Vuex.Store({
     },
 
     getProductsNamesList (state) {
-      return state.products.map(product => ({ id: product.id, title: product.title, category: product.category.display_name }))
+      return state.products.map(product => {
+        return {
+          id: product.id,
+          title: product.title,
+          category: {
+            name: product.category.name,
+            display_name: product.category.display_name
+          }
+        }
+      })
     },
 
     getFilters (state) {

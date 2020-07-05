@@ -12,8 +12,14 @@
       </label>
       <ul v-if="matchedItems.length" class="search-bar__list">
         <li class="search-bar__item" v-for="item in matchedItems" :key="item.id">
-          <a href="" class="search-bar__link">{{ item.title }}</a>
-          <a href="" class="search-bar__link search-bar__link--highlighted">в категории {{ item.category }}</a>
+          <router-link
+            :to="{ name: 'ProductDetail', params: { id: item.id, name: item.category.name.toLowerCase() }}"
+            class="search-bar__link"
+          >{{ item.title }}</router-link>
+          <router-link
+            :to="{ name: 'CatItemDetail', params: { name: item.category.name.toLowerCase() } }"
+            class="search-bar__link search-bar__link--highlighted"
+          >в категории {{ item.category.display_name }}</router-link>
         </li>
       </ul>
       <button
