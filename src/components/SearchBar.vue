@@ -7,8 +7,10 @@
           class="search-bar__field"
           placeholder="Поиск"
           v-model.trim="value"
+          @input="onInput"
         />
       </label>
+      <pre v-if="search.length" style="position: absolute;">{{ search }}</pre>
       <button
         class="search-bar__button"
         aria-label="clear"
@@ -20,17 +22,37 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'search-bar',
   data () {
     return {
-      value: ''
+      value: '',
+      search: []
     }
   },
   methods: {
     clear () {
       this.value = ''
+    },
+    onInput () {
+      if (this.value.length) {
+        this.search = this.getProductsNamesList.filter(product => {
+          return product.title.toLowerCase().includes(this.value.toLowerCase())
+        })
+      } else {
+        this.search.length = 0
+      }
     }
+  },
+  mounted () {
+    this.$store.dispatch('fetchProducts')
+  },
+  computed: {
+    ...mapGetters([
+      'getProductsNamesList'
+    ])
   }
 }
 </script>
