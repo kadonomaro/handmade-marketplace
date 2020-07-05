@@ -10,7 +10,12 @@
           @input="onInput"
         />
       </label>
-      <pre v-if="search.length" style="position: absolute;">{{ search }}</pre>
+      <ul v-if="matchedItems.length" class="search-bar__list">
+        <li class="search-bar__item" v-for="item in matchedItems" :key="item.id">
+          <a href="" class="search-bar__link">{{ item.title }}</a>
+          <a href="" class="search-bar__link search-bar__link--highlighted">в категории {{ item.category }}</a>
+        </li>
+      </ul>
       <button
         class="search-bar__button"
         aria-label="clear"
@@ -29,20 +34,21 @@ export default {
   data () {
     return {
       value: '',
-      search: []
+      matchedItems: []
     }
   },
   methods: {
     clear () {
       this.value = ''
+      this.matchedItems.length = 0
     },
     onInput () {
       if (this.value.length) {
-        this.search = this.getProductsNamesList.filter(product => {
+        this.matchedItems = this.getProductsNamesList.filter(product => {
           return product.title.toLowerCase().includes(this.value.toLowerCase())
         })
       } else {
-        this.search.length = 0
+        this.matchedItems.length = 0
       }
     }
   },
@@ -100,6 +106,36 @@ export default {
     &:focus {
       opacity: 1;
     }
+  }
+  &__list {
+    position: absolute;
+    width: 100%;
+    max-height: 600px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: #fff;
+    box-shadow: 0 2px 8px 0 rgba($color: #48c4c8, $alpha: 0.2);
+    border-radius: 0 0 5px 5px;
+    overflow-y: auto;
+  }
+  &__item {
+    display: flex;
+    padding: 0 8px;
+    transition: background-color 0.1s ease-in;
+    &:hover {
+      background-color: lighten($color: #48c4c8, $amount: 20%);
+    }
+  }
+  &__link {
+    display: block;
+    margin-right: 5px;
+    padding: 6px 0;
+    color: inherit;
+    text-decoration: none;
+  }
+  &__link--highlighted {
+    color: #48c4c8;
   }
 }
 </style>
