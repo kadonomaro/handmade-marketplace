@@ -4,7 +4,7 @@
       <div class="product-filter__item" v-for="(filter, index) in computedFilters" :key="index">
         <div class="filter-item" v-if="filter.values.length">
           <div class="filter-item__name">{{ filter.name | translate }}</div>
-          <div class="filter-item__values" v-show="filters[filter.name].isOpen">
+          <div class="filter-item__values" v-if="filters">
             <div class="filter-item__value" v-for="(value, index) in filter.values" :key="index">
               <label>
                 <input class="checkbox visually-hidden" type="checkbox" :value="value" v-model="filters[filter.name].values">
