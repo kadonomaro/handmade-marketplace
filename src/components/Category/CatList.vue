@@ -36,10 +36,6 @@ export default {
   .cat-list {
     display: flex;
     flex-wrap: wrap;
-
-    /* temporary styles */
-    max-width: 1200px;
-    margin: 0 auto;
     &__item {
       flex-basis: 33.3333%;
       max-width: 33.3333%;

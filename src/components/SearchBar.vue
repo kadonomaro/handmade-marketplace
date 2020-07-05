@@ -10,16 +10,16 @@
           @input="onInput"
         />
       </label>
-      <ul v-if="matchedItems.length" class="search-bar__list">
-        <li class="search-bar__item" v-for="item in matchedItems" :key="item.id">
+      <ul v-if="matchedProducts.length" class="search-bar__list">
+        <li class="search-bar__item" v-for="product in matchedProducts" :key="product.id">
           <router-link
-            :to="{ name: 'ProductDetail', params: { id: item.id, name: item.category.name.toLowerCase() }}"
+            :to="{ name: 'ProductDetail', params: { id: product.id, name: product.category.name.toLowerCase() }}"
             class="search-bar__link"
-          >{{ item.title }}</router-link>
+          >{{ product.title }}</router-link>
           <router-link
-            :to="{ name: 'CatItemDetail', params: { name: item.category.name.toLowerCase() } }"
+            :to="{ name: 'CatItemDetail', params: { name: product.category.name.toLowerCase() } }"
             class="search-bar__link search-bar__link--highlighted"
-          >в категории {{ item.category.display_name }}</router-link>
+          >в категории {{ product.category.display_name }}</router-link>
         </li>
       </ul>
       <button
@@ -40,21 +40,21 @@ export default {
   data () {
     return {
       value: '',
-      matchedItems: []
+      matchedProducts: []
     }
   },
   methods: {
     clear () {
       this.value = ''
-      this.matchedItems.length = 0
+      this.matchedProducts.length = 0
     },
     onInput () {
       if (this.value.length) {
-        this.matchedItems = this.getProductsNamesList.filter(product => {
+        this.matchedProducts = this.getProductsNamesList.filter(product => {
           return product.title.toLowerCase().includes(this.value.toLowerCase())
         })
       } else {
-        this.matchedItems.length = 0
+        this.matchedProducts.length = 0
       }
     }
   },
@@ -73,6 +73,7 @@ export default {
 .search-bar {
   position: relative;
   max-width: 600px;
+  padding: 10px 0;
   &__label {
     position: relative;
   }
@@ -130,18 +131,22 @@ export default {
     padding: 0 8px;
     transition: background-color 0.1s ease-in;
     &:hover {
-      background-color: lighten($color: #48c4c8, $amount: 20%);
+      background-color: lighten($color: #48c4c8, $amount: 10%);
+    }
+    &:hover .search-bar__link--highlighted {
+      color: #ffffff;
     }
   }
   &__link {
     display: block;
     margin-right: 5px;
-    padding: 6px 0;
+    padding: 8px 0;
     color: inherit;
     text-decoration: none;
   }
   &__link--highlighted {
     color: #48c4c8;
+    transition: color 0.1s ease-in;
   }
 }
 </style>
