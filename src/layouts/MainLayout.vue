@@ -1,21 +1,21 @@
 <template>
   <div class="main-layout">
     <div class="container">
-      <search-bar />
+      <app-header />
       <cat-list />
     </div>
   </div>
 </template>
 
 <script>
+import AppHeader from '@/components/partial/AppHeader.vue'
 import CatList from '@/components/Category/CatList.vue'
-import SearchBar from '@/components/SearchBar.vue'
 
 export default {
   name: 'main-layout',
   components: {
-    CatList,
-    SearchBar
+    AppHeader,
+    CatList
   }
 }
 </script>
