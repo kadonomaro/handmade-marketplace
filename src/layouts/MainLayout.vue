@@ -1,20 +1,25 @@
 <template>
-  <div class="category">
-    <search-bar />
-    <cat-list />
+  <div class="main-layout">
+    <div class="container">
+      <search-bar />
+      <cat-list />
+    </div>
   </div>
 </template>
 
 <script>
-
 import CatList from '@/components/Category/CatList.vue'
 import SearchBar from '@/components/SearchBar.vue'
 
 export default {
-  name: 'category',
+  name: 'main-layout',
   components: {
     CatList,
     SearchBar
   }
 }
 </script>
+
+<style>
+
+</style>
