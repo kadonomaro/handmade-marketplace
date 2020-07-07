@@ -8,16 +8,25 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      layout: 'main-layout'
+    }
   },
   {
     path: '/category/:name',
     name: 'CatItemDetail',
+    meta: {
+      layout: 'main-layout'
+    },
     component: () => import('../components/Category/CatItemDetail.vue')
   },
   {
     path: '/category/:name/:id',
     name: 'ProductDetail',
+    meta: {
+      layout: 'main-layout'
+    },
     component: () => import('../components/Product/ProductDetail.vue')
   }
 

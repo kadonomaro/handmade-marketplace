@@ -1,17 +1,17 @@
 <template>
-  <div class="category">
-    <main-layout />
+  <div class="home">
+    <cat-list />
   </div>
 </template>
 
 <script>
 
-import MainLayout from '@/layouts/MainLayout.vue'
+import CatList from '@/components/Category/CatList.vue'
 
 export default {
-  name: 'category',
+  name: 'Home',
   components: {
-    MainLayout
+    CatList
   }
 }
 </script>

@@ -1,6 +1,9 @@
 <template>
   <header class="header">
     <div class="header__inner">
+      <div class="header__logo">
+        <app-logo />
+      </div>
       <div class="header__search">
         <search-bar />
       </div>
@@ -10,19 +13,26 @@
 
 <script>
 import SearchBar from '@/components/partial/SearchBar.vue'
+import AppLogo from '@/components/partial/AppLogo.vue'
 
 export default {
   name: 'AppHeader',
   components: {
-    SearchBar
+    SearchBar,
+    AppLogo
   }
 }
 </script>
 
 <style lang="scss">
   .header {
+    padding: 10px 0;
     &__inner {
       display: flex;
+      align-items: center;
+    }
+    &__logo {
+      margin-right: 10px;
     }
     &__search {
       flex-grow: 1;

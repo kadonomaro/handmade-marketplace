@@ -1,13 +1,25 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/category">category</router-link>
-    </div>
-    <div class="container">
+    <component :is="layout">
       <router-view/>
-    </div>
+    </component>
   </div>
 </template>
+
+<script>
+import MainLayout from '@/layouts/MainLayout.vue'
+
+export default {
+  components: {
+    MainLayout
+  },
+  computed: {
+    layout () {
+      return this.$route.meta.layout || 'main-layout'
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
