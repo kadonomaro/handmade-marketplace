@@ -32,7 +32,7 @@ export default {
       align-items: center;
     }
     &__logo {
-      margin-right: 10px;
+      margin-right: 20px;
     }
     &__search {
       flex-grow: 1;
