@@ -42,6 +42,7 @@ export default {
     &__list {
       display: flex;
       flex-wrap: wrap;
+      margin: 0 -10px;
     }
     &__item {
       flex-basis: 20%;

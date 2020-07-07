@@ -1,7 +1,7 @@
 <template>
   <div class="category">
     <div>
-      <h1>{{ category.display_name }}</h1>
+      <h1 class="category__title">{{ category.display_name }}</h1>
 
       <div class="category__inner">
         <aside class="category__filter">
@@ -78,6 +78,9 @@ export default {
 
 <style lang="scss">
   .category {
+    &__title {
+      margin: 0 0 20px;
+    }
     &__inner {
       display: flex;
     }

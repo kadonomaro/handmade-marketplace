@@ -3,10 +3,11 @@
       class="cat-item"
       :to="{ name: 'CatItemDetail', params: { name: category.name.toLowerCase() }}"
     >
+      <h2 class="cat-item__title">{{ category.display_name }}</h2>
       <div class="cat-item__image">
         <img :src="url + category.preview_image.url" :alt="category.name">
       </div>
-      <h2 class="cat-item__title">{{ category.display_name }}</h2>
+
     </router-link>
 </template>
 
@@ -32,7 +33,8 @@ export default {
 
 <style lang="scss">
   .cat-item {
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 10px;
     color: #303030;
     text-decoration: none;
@@ -45,9 +47,15 @@ export default {
       border-color: #48c4c8;
       box-shadow: 0 3px 8px 0 rgba(#74818d, 0.1);
     }
+    &__title,
+    &__image {
+      flex-basis: 50%;
+      max-width: 50%;
+    }
     &__title {
       margin: 0;
-      font-size: 20px;
+      font-size: 26px;
+      text-align: center;
     }
     &__image {
       margin-bottom: 10px;
