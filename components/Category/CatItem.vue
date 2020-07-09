@@ -1,7 +1,7 @@
 <template>
-  <router-link
+  <nuxt-link
     class="cat-item"
-    :to="{ name: 'CatItemDetail', params: { name: category.name.toLowerCase() }}"
+    :to="'/category/' + category.name.toLowerCase()"
   >
     <h2 class="cat-item__title">
       {{ category.display_name }}
@@ -9,7 +9,7 @@
     <div class="cat-item__image">
       <img :src="url + category.preview_image.url" :alt="category.name">
     </div>
-  </router-link>
+  </nuxt-link>
 </template>
 
 <script>

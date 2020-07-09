@@ -4,9 +4,9 @@
       <img :src="logo" alt="Handmade Marketplace">
     </template>
     <template v-else>
-      <router-link :to="'/'">
+      <nuxt-link :to="'/'">
         <img :src="logo" alt="Handmade Marketplace">
-      </router-link>
+      </nuxt-link>
     </template>
   </div>
 </template>
