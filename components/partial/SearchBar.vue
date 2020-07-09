@@ -19,7 +19,7 @@
             {{ product.title }}
           </nuxt-link>
           <nuxt-link
-            :to="{ name: 'CatItemDetail', params: { name: product.category.name.toLowerCase() } }"
+            :to="'/category/' + product.category.name.toLowerCase()"
             class="search-bar__link search-bar__link--highlighted"
           >
             в категории {{ product.category.displayName }}

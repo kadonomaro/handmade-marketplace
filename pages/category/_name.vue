@@ -1,6 +1,16 @@
 <template>
   <div class="category">
-    <h1 class="category__title">{{ category.display_name }}</h1>
+    <h1 class="category__title">
+      {{ category.display_name }}
+    </h1>
+    <div class="category__inner">
+      <aside class="category__filter">
+      <!-- <product-filter :products="category.products" @on-filter="onFilter" /> -->
+      </aside>
+      <main class="category__main">
+        <product-list :products="category.products" />
+      </main>
+    </div>
   </div>
 </template>
 
