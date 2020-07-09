@@ -11,15 +11,19 @@
         >
       </label>
       <ul v-if="matchedProducts.length" class="search-bar__list">
-        <li class="search-bar__item" v-for="product in matchedProducts" :key="product.id">
+        <li v-for="product in matchedProducts" :key="product.id" class="search-bar__item">
           <router-link
             :to="{ name: 'ProductDetail', params: { id: product.id, name: product.category.name.toLowerCase() }}"
             class="search-bar__link"
-          >{{ product.title }}</router-link>
+          >
+            {{ product.title }}
+          </router-link>
           <router-link
             :to="{ name: 'CatItemDetail', params: { name: product.category.name.toLowerCase() } }"
             class="search-bar__link search-bar__link--highlighted"
-          >в категории {{ product.category.displayName }}</router-link>
+          >
+            в категории {{ product.category.displayName }}
+          </router-link>
         </li>
       </ul>
       <button

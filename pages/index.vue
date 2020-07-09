@@ -1,19 +1,23 @@
 <template>
   <div>
-    <h1>Handmade Marketplace</h1>
-    {{ products }}
+    <cat-list :categories="categories" />
   </div>
 </template>
 
 <script>
+import CatList from '@/components/Category/CatList.vue'
+
 export default {
+  components: {
+    CatList
+  },
   async asyncData ({ $axios }) {
-    const products = await $axios.$get('http://localhost:1337/products')
-    return { products }
+    const categories = await $axios.$get('http://localhost:1337/categories')
+    return { categories }
   },
   data () {
     return {
-      products: []
+      categories: []
     }
   }
 }
