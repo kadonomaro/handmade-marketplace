@@ -21,21 +21,9 @@ export default {
     const category = data.find(category => category.name.toLowerCase() === params.name)
     return { category }
   },
-  head () {
-    return {
-      title: this.category.SEO.find(item => item.name === 'title')?.value || 'Категория',
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: this.category.SEO.find(item => item.name === 'description')?.value || 'Описание категории'
-        }
-      ]
-    }
-  },
   data () {
     return {
-      category: {},
+      category: [],
       products: []
     }
   },
@@ -65,6 +53,18 @@ export default {
         })
         this.products = products
       }
+    }
+  },
+  head () {
+    return {
+      title: this.category.SEO.find(item => item.name === 'title')?.value || 'Категория',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.category.SEO.find(item => item.name === 'description')?.value || 'Описание категории'
+        }
+      ]
     }
   }
 }
