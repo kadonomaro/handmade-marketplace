@@ -1,7 +1,7 @@
 <template>
   <div class="product-card">
     <nuxt-link
-      :to="{ name: 'ProductDetail', params: { id: product.id }}"
+      :to="`/category/${$route.params.name}/${product.id}`"
       class="product-card__link"
     >
       <img

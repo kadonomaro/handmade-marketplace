@@ -13,7 +13,7 @@
       <ul v-if="matchedProducts.length" class="search-bar__list">
         <li v-for="product in matchedProducts" :key="product.id" class="search-bar__item">
           <nuxt-link
-            :to="{ name: 'ProductDetail', params: { id: product.id, name: product.category.name.toLowerCase() }}"
+            :to="'/category/' + product.category.name.toLowerCase() + '/' + product.id"
             class="search-bar__link"
           >
             {{ product.title }}

@@ -45,8 +45,7 @@
         </div>
       </div>
     </div>
-
-    <!-- <related-products v-if="relatedProducts.length" :products="relatedProducts"/> -->
+    <related-products :products="related" />
   </div>
 </template>
 
@@ -54,25 +53,32 @@
 import { settings } from '@/server.settings'
 
 export default {
-  async asyncData ({ $axios, params }) {
-    const product = await $axios.$get('http://localhost:1337/products/' + params.id)
-    return { product }
+  async asyncData ({ $axios, params, app }) {
+    const product = await $axios.$get(settings.url + '/products/' + params.id)
+    const response = await $axios.$get(settings.url + '/categories/' + product.category.id)
+    const relatedProducts = response.products
+    return { product, relatedProducts }
   },
   data () {
     return {
       product: {},
-      url: settings.url
+      relatedProducts: []
     }
   },
   computed: {
     media () {
-      return this.url + (this.product.media[0].formats.large.url || this.product.media[0].url)
+      return settings.url + (this.product.media[0].formats.large.url || this.product.media[0].url)
+    },
+    related () {
+      return this.relatedProducts.filter(product => product.title !== this.product.title)
     }
   }
 }
 </script>
 
 <style lang="scss">
+@import '@/assets/css/blocks/button.scss';
+
   .product {
     &__inner {
       display: flex;

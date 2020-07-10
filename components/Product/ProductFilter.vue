@@ -10,8 +10,10 @@
             <div v-for="(value, idx) in filter.values" :key="idx" class="filter-item__value">
               <label>
                 <input v-model="filters[filter.name].values" :value="value" class="checkbox visually-hidden" type="checkbox">
-                <span class="checkbox-custom"></span>
-                <span class="filter-item__value-text">{{ value }}</span>
+                <span class="checkbox-custom" />
+                <span class="filter-item__value-text">
+                  {{ value }}
+                </span>
               </label>
             </div>
           </div>
