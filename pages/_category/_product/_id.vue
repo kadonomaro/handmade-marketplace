@@ -59,6 +59,9 @@ export default {
     const relatedProducts = response.products
     return { product, relatedProducts }
   },
+  validate ({ params }) {
+    return /^\d+$/.test(params.id)
+  },
   data () {
     return {
       product: {},
