@@ -3,11 +3,13 @@
     <form class="product-filter__form" @submit.prevent="onSubmit">
       <div v-for="(filter, index) in filtersView" :key="index" class="product-filter__item">
         <div v-if="filter.values.length" class="filter-item">
-          <div class="filter-item__name">{{ filter.name | translate }}</div>
+          <div class="filter-item__name">
+            {{ filter.name | translate }}
+          </div>
           <div v-if="filters" class="filter-item__values">
-            <div v-for="(value, index) in filter.values" :key="index" class="filter-item__value">
+            <div v-for="(value, idx) in filter.values" :key="idx" class="filter-item__value">
               <label>
-                <input class="checkbox visually-hidden" type="checkbox" :value="value" v-model="filters[filter.name].values">
+                <input v-model="filters[filter.name].values" :value="value" class="checkbox visually-hidden" type="checkbox">
                 <span class="checkbox-custom"></span>
                 <span class="filter-item__value-text">{{ value }}</span>
               </label>
@@ -15,7 +17,9 @@
           </div>
         </div>
       </div>
-      <button class="button product-filter__button">Применить</button>
+      <button class="button product-filter__button">
+        Применить
+      </button>
     </form>
   </div>
 </template>
