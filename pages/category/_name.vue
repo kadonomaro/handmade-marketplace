@@ -5,7 +5,8 @@
     </h1>
     <div class="category__inner">
       <aside class="category__filter">
-      <!-- <product-filter :products="category.products" @on-filter="onFilter" /> -->
+        <!-- <product-filter :products="category.products" @on-filter="onFilter" /> -->
+        <product-filter :products="category.products" />
       </aside>
       <main class="category__main">
         <product-list :products="category.products" />
