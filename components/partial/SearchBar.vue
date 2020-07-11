@@ -10,8 +10,8 @@
           @input="onInput"
         >
       </label>
-      <ul v-if="matchedProducts.length" class="search-bar__list">
-        <li v-for="product in matchedProducts" :key="product.id" class="search-bar__item">
+      <ul v-if="matchedProducts.length && !isExpanded" class="search-bar__list">
+        <li v-for="product in matchedProducts" :key="product.id" @click="onClick" class="search-bar__item">
           <nuxt-link
             :to="'/category/' + product.category.name.toLowerCase() + '/' + product.id"
             class="search-bar__link"
@@ -42,8 +42,9 @@ export default {
   data () {
     return {
       productsNames: [],
+      matchedProducts: [],
       value: '',
-      matchedProducts: []
+      isExpanded: false
     }
   },
   async mounted () {
@@ -65,6 +66,7 @@ export default {
       this.matchedProducts.length = 0
     },
     onInput () {
+      this.isExpanded = false
       if (this.value.length) {
         this.matchedProducts = this.productsNames.filter((product) => {
           return product.title.toLowerCase().includes(this.value.toLowerCase())
@@ -72,6 +74,10 @@ export default {
       } else {
         this.matchedProducts.length = 0
       }
+    },
+    onClick () {
+      this.isExpanded = !this.isExpanded
+      this.clear()
     }
   }
 }

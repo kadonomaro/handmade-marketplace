@@ -1,5 +1,5 @@
 <template>
-  <div class="related-products">
+  <div v-if="products.length" class="related-products">
     <h2 class="related-products__title">
       Похожие товары
     </h2>
