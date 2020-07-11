@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
 # Logs
@@ -88,3 +89,27 @@ sw.*
 
 # Vim swap files
 *.swp
+=======
+.DS_Store
+node_modules
+/dist
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+>>>>>>> 1b67bdd967913b00be9ae2d3dbdf27cf5eebe131
