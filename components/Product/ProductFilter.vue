@@ -68,8 +68,6 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '@/assets/css/blocks/checkbox.scss';
-
   .product-filter {
     &__item {
       margin-bottom: 10px;

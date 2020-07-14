@@ -82,8 +82,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/css/blocks/button.scss';
-
   .product {
     &__inner {
       display: flex;

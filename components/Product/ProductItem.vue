@@ -51,8 +51,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/css/blocks/button.scss';
-
   .product-card {
     display: flex;
     flex-direction: column;
