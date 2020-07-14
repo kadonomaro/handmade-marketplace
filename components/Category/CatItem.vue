@@ -40,13 +40,13 @@ export default {
     color: #303030;
     text-decoration: none;
     background-color: #ffffff;
-    border: 1px solid #e6ecf1;
+    border: 1px solid $color-border;
     border-radius: 5px;
     box-shadow: 0 3px 8px 0 rgba(#74818d, 0.1);
     transition: color 0.1s ease-in, border-color 0.1s ease-in;
     &:hover {
-      color: #48c4c8;
-      border-color: #48c4c8;
+      color: $color-accent;
+      border-color: $color-accent;
       box-shadow: 0 3px 8px 0 rgba(#74818d, 0.1);
     }
     &__title,

@@ -58,7 +58,7 @@ export default {
     flex-direction: column;
     height: 100%;
     padding: 10px;
-    border: 1px solid #e6ecf1;
+    border: 1px solid $color-border;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(1,14,40,.05);
     transition: box-shadow 0.2s ease-in;

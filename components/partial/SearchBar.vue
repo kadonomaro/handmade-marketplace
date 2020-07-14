@@ -95,14 +95,14 @@ export default {
     width: 100%;
     padding: 10px 25px 10px 10px;
     font-size: 16px;
-    border: 1px solid #e6ecf1;
+    border: 1px solid $color-border;
     border-radius: 5px;
     transition: border-color 0.2s ease-in;
     outline: none;
     box-sizing: border-box;
     &:hover,
     &:focus {
-      border-color: #48c4c8;
+      border-color: $color-accent;
     }
   }
   &__button {
@@ -136,7 +136,7 @@ export default {
     padding: 0;
     list-style: none;
     background-color: #fff;
-    box-shadow: 0 2px 8px 0 rgba($color: #48c4c8, $alpha: 0.2);
+    box-shadow: 0 2px 8px 0 rgba($color: $color-accent, $alpha: 0.2);
     border-radius: 0 0 5px 5px;
     overflow-y: auto;
   }
@@ -145,7 +145,7 @@ export default {
     padding: 0 8px;
     transition: background-color 0.1s ease-in;
     &:hover {
-      background-color: lighten($color: #48c4c8, $amount: 10%);
+      background-color: lighten($color: $color-accent, $amount: 10%);
     }
     &:hover .search-bar__link--highlighted {
       color: #ffffff;
@@ -159,7 +159,7 @@ export default {
     text-decoration: none;
   }
   &__link--highlighted {
-    color: #48c4c8;
+    color: $color-accent;
     transition: color 0.1s ease-in;
   }
 }

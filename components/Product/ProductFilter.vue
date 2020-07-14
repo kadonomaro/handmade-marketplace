@@ -82,8 +82,8 @@ export default {
       margin-bottom: 5px;
       padding: 2px 8px;
       font-weight: bold;
-      background-color: #e6ecf1;
-      border: 1px solid #e6ecf1;
+      background-color: $color-border;
+      border: 1px solid $color-border;
       border-radius: 5px;
     }
     &__value {

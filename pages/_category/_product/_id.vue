@@ -143,7 +143,7 @@ export default {
       &::after {
         content: '';
         flex-grow: 1;
-        border-bottom: 1px dotted #e6ecf1;
+        border-bottom: 1px dotted $color-border;
       }
     }
   }
