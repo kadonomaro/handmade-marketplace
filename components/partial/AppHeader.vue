@@ -1,11 +1,13 @@
 <template>
   <header class="header">
-    <div class="header__inner">
-      <div class="header__logo">
-        <app-logo />
-      </div>
-      <div class="header__search">
-        <search-bar />
+    <div class="container">
+      <div class="header__inner">
+        <div class="header__logo">
+          <app-logo />
+        </div>
+        <div class="header__search">
+          <search-bar />
+        </div>
       </div>
     </div>
   </header>

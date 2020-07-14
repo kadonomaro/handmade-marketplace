@@ -39,6 +39,7 @@ export default {
     padding: 10px;
     color: #303030;
     text-decoration: none;
+    background-color: #ffffff;
     border: 1px solid #e6ecf1;
     border-radius: 5px;
     box-shadow: 0 3px 8px 0 rgba(#74818d, 0.1);

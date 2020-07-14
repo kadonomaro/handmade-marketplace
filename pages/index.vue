@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <main class="index-page">
     <cat-list :categories="categories" />
-  </div>
+  </main>
 </template>
 
 <script>

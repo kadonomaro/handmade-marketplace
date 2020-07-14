@@ -1,11 +1,15 @@
 <template>
   <div class="cat-list">
-    <div
-      v-for="cat in categories"
-      :key="cat.id"
-      class="cat-list__item"
-    >
-      <cat-item :category="cat" />
+    <div class="container">
+      <div class="cat-list__inner">
+        <div
+          v-for="cat in categories"
+          :key="cat.id"
+          class="cat-list__item"
+        >
+          <cat-item :category="cat" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -35,9 +39,13 @@ export default {
 
 <style lang="scss">
   .cat-list {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 -10px;
+    padding: 60px 0;
+    background-color: #f3f5f9;
+    &__inner {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -10px;
+    }
     &__item {
       flex-basis: 33.3333%;
       max-width: 33.3333%;

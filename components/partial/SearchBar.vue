@@ -11,7 +11,7 @@
         >
       </label>
       <ul v-if="matchedProducts.length && !isExpanded" class="search-bar__list">
-        <li v-for="product in matchedProducts" :key="product.id" @click="onClick" class="search-bar__item">
+        <li v-for="product in matchedProducts" :key="product.id" class="search-bar__item" @click="onClick">
           <nuxt-link
             :to="'/category/' + product.category.name.toLowerCase() + '/' + product.id"
             class="search-bar__link"

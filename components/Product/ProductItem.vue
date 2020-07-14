@@ -60,11 +60,11 @@ export default {
     padding: 10px;
     border: 1px solid #e6ecf1;
     border-radius: 5px;
-    box-shadow: 0 3px 8px 0 rgba(#74818d, 0.1);
-    transition: color 0.1s ease-in, border-color 0.1s ease-in;
+    box-shadow: 0 2px 4px rgba(1,14,40,.05);
+    transition: box-shadow 0.2s ease-in;
     box-sizing: border-box;
     &:hover {
-      border-color: #48c4c8;
+      box-shadow: 0 10px 20px rgba(3,27,78,.1);
     }
     &__link {
       display: block;
