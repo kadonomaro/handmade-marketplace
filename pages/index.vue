@@ -12,7 +12,8 @@ export default {
     CatList
   },
   async asyncData ({ $axios }) {
-    const categories = await $axios.$get('http://localhost:1337/categories')
+    const response = await $axios.$get('http://localhost:1337/categories')
+    const categories = response.splice(0, 4)
     return { categories }
   },
   data () {

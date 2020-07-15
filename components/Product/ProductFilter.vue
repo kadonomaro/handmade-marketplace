@@ -1,5 +1,5 @@
 <template>
-  <div class="product-filter">
+  <div v-if="products.length" class="product-filter">
     <form class="product-filter__form" @submit.prevent="onSubmit">
       <div v-for="(filter, index) in filtersView" :key="index" class="product-filter__item">
         <div v-if="filter.values.length" class="filter-item">

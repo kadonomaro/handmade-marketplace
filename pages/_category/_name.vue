@@ -4,6 +4,9 @@
       <h1 class="category__title">
         {{ category.display_name }}
       </h1>
+      <div class="category__breadcrumbs">
+        <app-breadcrumbs />
+      </div>
       <div class="category__inner">
         <aside class="category__filter">
           <product-filter :products="category.products" @on-filter="onFilter" />
@@ -17,7 +20,12 @@
 </template>
 
 <script>
+import AppBreadcrumbs from '@/components/partial/AppBreadcrumbs'
+
 export default {
+  components: {
+    AppBreadcrumbs
+  },
   async asyncData ({ $axios, params }) {
     const data = await $axios.$get('http://localhost:1337/categories')
     const category = data.find(category => category.name.toLowerCase() === params.name)
@@ -76,6 +84,9 @@ export default {
   .category {
     &__title {
       margin: 0 0 20px;
+    }
+    &__breadcrumbs {
+      margin-bottom: 20px;
     }
     &__inner {
       display: flex;
