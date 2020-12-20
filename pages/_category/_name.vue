@@ -21,14 +21,14 @@
 
 <script>
 import AppBreadcrumbs from '@/components/partial/AppBreadcrumbs'
+import { categoriesApi } from '@/api/categories.api'
 
 export default {
   components: {
     AppBreadcrumbs
   },
   async asyncData ({ $axios, params }) {
-    const data = await $axios.$get('http://localhost:1337/categories')
-    const category = data.find(category => category.name.toLowerCase() === params.name)
+    const category = await categoriesApi($axios).getByName(params.name)
     return { category }
   },
   data () {
@@ -67,12 +67,12 @@ export default {
   },
   head () {
     return {
-      title: this.category.SEO.find(item => item.name === 'title')?.value || 'Категория',
+      title: this.category.seo?.find(item => item.name === 'title')?.value || 'Категория',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.category.SEO.find(item => item.name === 'description')?.value || 'Описание категории'
+          content: this.category.seo?.find(item => item.name === 'description')?.value || 'Описание категории'
         }
       ]
     }

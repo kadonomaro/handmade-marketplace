@@ -1,10 +1,18 @@
 <template>
   <div class="breadcrumbs">
     <ul class="breadcrumbs__list">
-      <li class="breadcrumbs__item">Первый</li>
-      <li class="breadcrumbs__item">Второй</li>
-      <li class="breadcrumbs__item">Третий</li>
-      <li class="breadcrumbs__item">Четвертый</li>
+      <li class="breadcrumbs__item">
+        Первый
+      </li>
+      <li class="breadcrumbs__item">
+        Второй
+      </li>
+      <li class="breadcrumbs__item">
+        Третий
+      </li>
+      <li class="breadcrumbs__item">
+        Четвертый
+      </li>
     </ul>
   </div>
 </template>

@@ -19,7 +19,6 @@
 
 <script>
 import CatItem from '@/components/Category/CatItem.vue'
-import { settings } from '@/server.settings'
 
 export default {
   name: 'CatList',
@@ -30,11 +29,6 @@ export default {
     categories: {
       type: Array,
       required: true
-    }
-  },
-  data () {
-    return {
-      url: settings.url
     }
   }
 }

@@ -7,7 +7,7 @@
       {{ category.display_name }}
     </h2>
     <div class="cat-item__image">
-      <img :src="url + category.preview_image.url" :alt="category.name">
+      <img src="https://via.placeholder.com/250" :alt="category.name">
     </div>
   </nuxt-link>
 </template>

@@ -1,17 +1,17 @@
 .button {
-    position: relative;
-    z-index: 99;
-    padding: 6px 16px;
-    color: #ffffff;
-    font-family: inherit;
-    font-size: 18px;
-    background-color: $color-accent;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: color 0.1s ease-in, background-color 0.1s ease-in;
-    &:hover {
-        color: #ffffff;
-        background-color: darken($color: $color-accent, $amount: 10%);
-    }
+  padding: 6px 12px;
+  color: $color-text;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  background-color: $color-button;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in;
+  outline: none;
+  &:hover {
+    background-color: $color-button--hover;
+  }
 }

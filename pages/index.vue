@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { categoriesApi } from '@/api/categories.api'
 import CatList from '@/components/Category/CatList.vue'
 
 export default {
@@ -12,7 +13,7 @@ export default {
     CatList
   },
   async asyncData ({ $axios }) {
-    const response = await $axios.$get('http://localhost:1337/categories')
+    const response = await categoriesApi($axios).getAll()
     const categories = response.splice(0, 4)
     return { categories }
   },

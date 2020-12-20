@@ -37,6 +37,7 @@
 </template>
 
 <script>
+// import { settings } from '@/server.settings'
 
 export default {
   data () {
@@ -48,17 +49,17 @@ export default {
     }
   },
   async mounted () {
-    const products = await this.$axios.$get('http://localhost:1337/products')
-    this.productsNames = products.map((product) => {
-      return {
-        id: product.id,
-        title: product.title,
-        category: {
-          name: product.category.name,
-          displayName: product.category.display_name
-        }
-      }
-    })
+    // const products = await this.$axios.$get(settings.url + 'products')
+    // this.productsNames = products.map((product) => {
+    //   return {
+    //     id: product.id,
+    //     title: product.title,
+    //     category: {
+    //       name: product.category.name,
+    //       displayName: product.category.display_name
+    //     }
+    //   }
+    // })
   },
   methods: {
     clear () {
