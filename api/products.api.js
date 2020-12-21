@@ -6,8 +6,7 @@ export function productsApi ($api) {
       return await $api.$get(settings.url + 'products')
     },
     async getById (id) {
-      const response = await $api.$get(settings.url + 'products' + id)
-      return response.find(products => products._id === id)
+      return await $api.$get(settings.url + 'products/' + id)
     }
   }
 }

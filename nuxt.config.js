@@ -24,7 +24,8 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Jost:wght@400;700&amp;display=swap' },
+      // { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap' }
     ]
   },
   /*

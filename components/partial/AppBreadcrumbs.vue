@@ -2,16 +2,10 @@
   <div class="breadcrumbs">
     <ul class="breadcrumbs__list">
       <li class="breadcrumbs__item">
-        Первый
+        <nuxt-link class="breadcrumbs__link" :to="{ name: 'index' }">Главная</nuxt-link>
       </li>
       <li class="breadcrumbs__item">
-        Второй
-      </li>
-      <li class="breadcrumbs__item">
-        Третий
-      </li>
-      <li class="breadcrumbs__item">
-        Четвертый
+        {{ $route.params.name }}
       </li>
     </ul>
   </div>
@@ -36,12 +30,13 @@ export default {
       &:not(:last-child) {
         margin-right: 10px;
         &::after {
+          content: '/';
           display: inline-block;
           margin-left: 10px;
-          content: '/';
         }
       }
     }
 
   }
 </style>
+<!--TODO - Repair component-->

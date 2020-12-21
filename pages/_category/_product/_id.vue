@@ -4,7 +4,7 @@
       <div class="product__inner">
         <div class="product__side">
           <div class="product__image">
-            <img :src="media" alt="">
+            <img :src="image" alt="">
           </div>
         </div>
         <div class="product__main">
@@ -13,35 +13,38 @@
               {{ product.title }}
             </h1>
 
-            <div v-if="product.description.length" class="product__desc">
+            <div v-if="description" class="product__desc">
               <span class="product__caption">Описание</span>
               <p>
                 {{ product.description }}
               </p>
             </div>
 
-            <div v-if="product.spec.length" class="product__spec product-spec">
-              <span class="product__caption">Характеристики</span>
-              <div v-for="spec in product.spec" :key="spec.id" class="product-spec__item">
-                <span class="product-spec__name">
-                  {{ spec.name | translate }}
-                </span>
-                <span class="product-spec__value">
-                  {{ spec.value }}
-                </span>
-              </div>
-            </div>
+            <!--            <div v-if="product.spec.length" class="product__spec product-spec">-->
+            <!--              <span class="product__caption">Характеристики</span>-->
+            <!--              <div v-for="spec in product.spec" :key="spec.id" class="product-spec__item">-->
+            <!--                <span class="product-spec__name">-->
+            <!--                  {{ spec.name | translate }}-->
+            <!--                </span>-->
+            <!--                <span class="product-spec__value">-->
+            <!--                  {{ spec.value }}-->
+            <!--                </span>-->
+            <!--              </div>-->
+            <!--            </div>-->
 
             <div class="product__price product-price">
               <span class="product-price__amount">
                 {{ product.price | currency('rub') }}
               </span>
-              <button v-if="product.amount > 0" class="button product-price__button">
+              <!--              <button v-if="product.amount > 0" class="button product-price__button">-->
+              <!--                В корзину-->
+              <!--              </button>-->
+              <button class="button product-price__button">
                 В корзину
               </button>
-              <span v-else class="product-price__empty">
-                Нет в наличии
-              </span>
+              <!--              <span v-else class="product-price__empty">-->
+              <!--                Нет в наличии-->
+              <!--              </span>-->
             </div>
           </div>
         </div>
@@ -52,30 +55,43 @@
 </template>
 
 <script>
-import { settings } from '@/server.settings'
+import { categoriesApi } from '@/api/categories.api'
+import { productsApi } from '@/api/products.api'
+import RelatedProducts from '@/components/Product/RelatedProducts'
+import noPhoto from '~/assets/images/no-photo.jpg'
 
 export default {
+  name: 'ProductPage',
+  components: {
+    RelatedProducts
+  },
   async asyncData ({ $axios, params, app }) {
-    const product = await $axios.$get(settings.url + '/products/' + params.id)
-    const response = await $axios.$get(settings.url + '/categories/' + product.category.id)
-    const relatedProducts = response.products
-    return { product, relatedProducts }
+    const product = await productsApi($axios).getById(params.id)
+    const category = await categoriesApi($axios).getById(product.category_ids[0])
+    const categoryProducts = category.products
+    return { product, categoryProducts }
   },
-  validate ({ params }) {
-    return /^\d+$/.test(params.id)
-  },
+  // validate ({ params }) {
+  //   return /^\d+$/.test(params.id)
+  // },
   data () {
     return {
       product: {},
-      relatedProducts: []
+      categoryProducts: []
     }
   },
   computed: {
-    media () {
-      return settings.url + (this.product.media[0].formats.large.url || this.product.media[0].url)
+    image () {
+      return this.product.image.preview_image || this.product.image.detail_image || noPhoto
+    },
+    description () {
+      if (this.product.description) {
+        return this.product.description.split('.')[0] + '.'
+      }
+      return false
     },
     related () {
-      return this.relatedProducts.filter(product => product.title !== this.product.title)
+      return this.categoryProducts.filter(product => product.title !== this.product.title)
     }
   }
 }
@@ -86,7 +102,8 @@ export default {
     &__inner {
       display: flex;
       flex-wrap: wrap;
-      margin-bottom: 30px;
+      padding: 20px 0;
+      margin-bottom: 10px;
     }
     &__main {
       flex-basis: 65%;

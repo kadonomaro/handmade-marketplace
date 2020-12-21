@@ -9,7 +9,12 @@
         :alt="product.title"
       >
     </nuxt-link>
-    <span class="product-card__title">{{ product.title }}</span>
+    <nuxt-link
+      :to="`/category/${$route.params.name || $route.params.product}/${product._id}`"
+      class="product-card__link"
+    >
+      <span class="product-card__title">{{ product.title }}</span>
+    </nuxt-link>
     <div v-if="expanded && description" class="product-card__desc">
       <p>{{ description }}</p>
     </div>
@@ -24,6 +29,7 @@
 
 <script>
 import { settings } from '@/server.settings'
+import noPhoto from '@/assets/images/no-photo.jpg'
 
 export default {
   name: 'ProductItem',
@@ -39,12 +45,13 @@ export default {
   },
   data () {
     return {
-      url: settings.url
+      url: settings.url,
+      noPhoto
     }
   },
   computed: {
     image () {
-      return this.product.image.preview_image || this.product.image.detail_image
+      return this.product.image.preview_image || this.product.image.detail_image || noPhoto
     },
     description () {
       if (this.product.description) {
@@ -62,23 +69,21 @@ export default {
     flex-direction: column;
     height: 100%;
     padding: 10px;
-    border: 1px solid $color-border;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(1,14,40,.05);
+    box-shadow: 0 2px 4px 2px rgba(#01280E, 0.05);
     transition: box-shadow 0.2s ease-in;
     box-sizing: border-box;
     &:hover {
-      box-shadow: 0 10px 20px rgba(3,27,78,.1);
+      box-shadow: 0 10px 20px rgba(#031B4E, 0.1);
     }
     &__link {
-      display: block;
       color: inherit;
       text-decoration: none;
     }
     &__title {
       display: block;
       padding: 5px 0;
-      font-size: 18px;
+      font-size: 20px;
     }
     &__desc {
       flex-grow: 1;
@@ -89,12 +94,13 @@ export default {
     &__info {
       display: flex;
       justify-content: space-between;
+      margin-top: auto;
     }
     &__price {
       display: block;
+      color: $color-text;
       font-size: 24px;
       font-weight: bold;
     }
-
   }
 </style>

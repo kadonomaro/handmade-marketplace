@@ -9,7 +9,7 @@
       </div>
       <div class="category__inner">
         <aside class="category__filter">
-<!--          <product-filter :products="category.products" @on-filter="onFilter" />-->
+          <!--          <product-filter :products="category.products" @on-filter="onFilter" />-->
         </aside>
         <main class="category__main">
           <product-list :products="products" />
@@ -25,6 +25,7 @@ import AppBreadcrumbs from '@/components/partial/AppBreadcrumbs'
 import { categoriesApi } from '@/api/categories.api'
 
 export default {
+  name: 'CategoryPage',
   components: {
     AppBreadcrumbs,
     ProductList

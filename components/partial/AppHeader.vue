@@ -29,6 +29,8 @@ export default {
 <style lang="scss">
   .header {
     padding: 10px 0;
+    background-color: #f9fafb;
+    border-bottom: 2px solid $color-border;
     &__inner {
       display: flex;
       align-items: center;

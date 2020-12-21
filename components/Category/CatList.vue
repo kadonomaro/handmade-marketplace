@@ -2,7 +2,7 @@
   <div class="cat-list">
     <div class="container">
       <h2 class="cat-list__title">
-        Основные категории товаров
+        Популярные категории
       </h2>
       <div class="cat-list__inner">
         <div
@@ -42,6 +42,7 @@ export default {
       margin: 0 0 10px;
       color: $color-text-dark;
       font-size: 24px;
+      line-height: 28px;
       text-align: center;
     }
     &__inner {
