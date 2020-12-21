@@ -37,7 +37,7 @@
 </template>
 
 <script>
-// import { settings } from '@/server.settings'
+import { productsApi } from '@/api/products.api'
 
 export default {
   data () {
@@ -49,17 +49,17 @@ export default {
     }
   },
   async mounted () {
-    // const products = await this.$axios.$get(settings.url + 'products')
-    // this.productsNames = products.map((product) => {
-    //   return {
-    //     id: product.id,
-    //     title: product.title,
-    //     category: {
-    //       name: product.category.name,
-    //       displayName: product.category.display_name
-    //     }
-    //   }
-    // })
+    const products = await productsApi(this.$axios).getAll()
+    this.productsNames = products.map((product) => {
+      return {
+        id: product._id,
+        title: product.title,
+        category: {
+          name: product.category_ids[0].name,
+          displayName: product.category_ids[0].display_name
+        }
+      }
+    })
   },
   methods: {
     clear () {
