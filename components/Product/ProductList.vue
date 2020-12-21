@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import productItem from '@/components/Product/ProductItem.vue'
+import ProductItem from '@/components/Product/ProductItem.vue'
 
 export default {
   name: 'ProductList',
   components: {
-    productItem
+    ProductItem
   },
   props: {
     products: {

@@ -1,16 +1,16 @@
 <template>
   <div class="product-card">
     <nuxt-link
-      :to="`/category/${$route.params.name || $route.params.product}/${product.id}`"
+      :to="`/category/${$route.params.name || $route.params.product}/${product._id}`"
       class="product-card__link"
     >
       <img
-        :src="url + (product.media[0].formats.small.url || product.media[0].url)"
+        :src="image"
         :alt="product.title"
       >
     </nuxt-link>
     <span class="product-card__title">{{ product.title }}</span>
-    <div v-if="expanded" class="product-card__desc">
+    <div v-if="expanded && description" class="product-card__desc">
       <p>{{ description }}</p>
     </div>
     <div class="product-card__info">
@@ -43,8 +43,14 @@ export default {
     }
   },
   computed: {
+    image () {
+      return this.product.image.preview_image || this.product.image.detail_image
+    },
     description () {
-      return this.product.description.split('.')[0] + '.'
+      if (this.product.description) {
+        return this.product.description.split('.')[0] + '.'
+      }
+      return false
     }
   }
 }

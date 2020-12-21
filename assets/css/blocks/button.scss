@@ -12,6 +12,6 @@
   transition: background-color 0.2s ease-in;
   outline: none;
   &:hover {
-    background-color: $color-button--hover;
+    background-color: darken($color-button, 7%);
   }
 }
