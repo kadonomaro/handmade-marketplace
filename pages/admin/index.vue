@@ -4,19 +4,16 @@
       Панель управления сайтом
     </h1>
     <div class="admin-page__inner">
-      <aside class="admin-page__sidebar">
-        <button class="button" @click="setActiveComponent('categories')">
+      <aside class="admin-page__side">
+        <button class="button" @click="setActiveComponent('CategoriesList', 'categories')">
           Категории
         </button>
-        <button class="button" @click="setActiveComponent('products')">
+        <button class="button" @click="setActiveComponent('ProductsList', 'products')">
           Товары
-        </button>
-        <button class="button" @click="setActiveComponent('banners')">
-          Баннеры
         </button>
       </aside>
       <main class="admin-page__main">
-        <categories-list :categories="categories" />
+        <component :is="component.name" :list="component.props"/>
       </main>
     </div>
   </div>
@@ -24,26 +21,42 @@
 
 <script>
 import { categoriesApi } from '@/api/categories.api'
+import { productsApi } from '@/api/products.api'
 import CategoriesList from '@/components/adminPage/Category/CategoriesList'
+import ProductsList from '@/components/adminPage/Category/ProductsList'
 
 export default {
+  name: 'AdminPage',
   components: {
-    CategoriesList
+    CategoriesList,
+    ProductsList
   },
   layout: 'admin',
   async asyncData ({ $axios }) {
     const categories = await categoriesApi($axios).getAll()
-    return { categories }
+    const products = await productsApi($axios).getAll()
+    return { categories, products }
   },
   data () {
     return {
-      component: 'categories',
-      categories: []
+      component: {
+        name: 'CategoriesList',
+        props: []
+      },
+      categories: [],
+      products: []
     }
   },
+  mounted () {
+    this.initActiveComponent()
+  },
   methods: {
-    setActiveComponent (component) {
-      this.component = component
+    initActiveComponent () {
+      this.component = { name: 'CategoriesList', props: this.categories }
+    },
+    setActiveComponent (name, props) {
+      this.component.name = name
+      this.component.props = this[props]
     }
   }
 }
@@ -60,12 +73,16 @@ export default {
   &__inner {
     display: flex;
   }
-  &__sidebar {
+  &__side {
+    flex-basis: 200px;
+    max-width: 200px;
+    flex-shrink: 0;
     margin-right: 10px;
     padding: 10px;
     background-color: #f8f8f8;
   }
   &__main {
+    flex-grow: 1;
     padding: 10px;
     background-color: #f8f8f8;
   }

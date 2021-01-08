@@ -1,4 +1,4 @@
-import { settings } from '~/server.settings'
+import { settings } from '@/server.settings'
 
 export function categoriesApi ($api) {
   return {
