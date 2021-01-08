@@ -70,12 +70,12 @@ export default {
   },
   head () {
     return {
-      title: this.category.seo.title,
+      title: this.category.seo_title,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: this.category.seo.description
+          content: this.category.seo_description
         }
       ]
     }

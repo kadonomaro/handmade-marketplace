@@ -1,7 +1,7 @@
 <template>
   <div class="product-card">
     <nuxt-link
-      :to="`/category/${$route.params.name || $route.params.product}/${product._id}`"
+      :to="`/category/${$route.params.name || $route.params.product}/${product.id}`"
       class="product-card__link"
     >
       <img
@@ -10,7 +10,7 @@
       >
     </nuxt-link>
     <nuxt-link
-      :to="`/category/${$route.params.name || $route.params.product}/${product._id}`"
+      :to="`/category/${$route.params.name || $route.params.product}/${product.id}`"
       class="product-card__link"
     >
       <span class="product-card__title">{{ product.title }}</span>
@@ -20,9 +20,12 @@
     </div>
     <div class="product-card__info">
       <span class="product-card__price">{{ product.price | currency('rub') }}</span>
-      <button class="button product-card__button">
+      <button v-if="product.amount > 0" class="button product-price__button">
         В корзину
       </button>
+      <span v-else class="product-price__empty">
+        Нет в наличии
+      </span>
     </div>
   </div>
 </template>
@@ -51,7 +54,7 @@ export default {
   },
   computed: {
     image () {
-      return this.product.image.preview_image || this.product.image.detail_image || noPhoto
+      return this.product.preview_image || this.product.detail_image || noPhoto
     },
     description () {
       if (this.product.description) {
@@ -69,12 +72,12 @@ export default {
     flex-direction: column;
     height: 100%;
     padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px 2px rgba(#01280E, 0.05);
+    border: 1px solid rgba(#000000, 0.05);
+    border-radius: 10px;
     transition: box-shadow 0.2s ease-in;
     box-sizing: border-box;
     &:hover {
-      box-shadow: 0 10px 20px rgba(#031B4E, 0.1);
+      box-shadow: 0 0 20px 0 rgba(#000000, 0.1);
     }
     &__link {
       color: inherit;

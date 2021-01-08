@@ -36,15 +36,12 @@
               <span class="product-price__amount">
                 {{ product.price | currency('rub') }}
               </span>
-              <!--              <button v-if="product.amount > 0" class="button product-price__button">-->
-              <!--                В корзину-->
-              <!--              </button>-->
-              <button class="button product-price__button">
+              <button v-if="product.amount > 0" class="button product-price__button">
                 В корзину
               </button>
-              <!--              <span v-else class="product-price__empty">-->
-              <!--                Нет в наличии-->
-              <!--              </span>-->
+              <span v-else class="product-price__empty">
+                Нет в наличии
+              </span>
             </div>
           </div>
         </div>
@@ -65,9 +62,9 @@ export default {
   components: {
     RelatedProducts
   },
-  async asyncData ({ $axios, params, app }) {
+  async asyncData ({ $axios, params }) {
     const product = await productsApi($axios).getById(params.id)
-    const category = await categoriesApi($axios).getById(product.category_ids[0])
+    const category = await categoriesApi($axios).getById(product.categories[0].id)
     const categoryProducts = category.products
     return { product, categoryProducts }
   },
@@ -82,7 +79,7 @@ export default {
   },
   computed: {
     image () {
-      return this.product.image.preview_image || this.product.image.detail_image || noPhoto
+      return this.product.preview_image || this.product.detail_image || noPhoto
     },
     description () {
       if (this.product.description) {

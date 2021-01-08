@@ -31,6 +31,7 @@ export default {
   .product-list {
     display: flex;
     flex-wrap: wrap;
+    margin: 0 -10px;
     &__item {
       flex-basis: 25%;
       max-width: 25%;

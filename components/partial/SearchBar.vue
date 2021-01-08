@@ -52,11 +52,11 @@ export default {
     const products = await productsApi(this.$axios).getAll()
     this.productsNames = products.map((product) => {
       return {
-        id: product._id,
+        id: product.id,
         title: product.title,
         category: {
-          name: product.category_ids[0].name,
-          displayName: product.category_ids[0].display_name
+          name: product.categories[0].name,
+          displayName: product.categories[0].display_name
         }
       }
     })
