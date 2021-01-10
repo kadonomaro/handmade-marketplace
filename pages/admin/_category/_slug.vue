@@ -5,8 +5,9 @@
         Назад
       </button>
       <h1>{{ category.display_name }}</h1>
-      <table class="table admin-table">
-        <tbody>
+      <div class="admin-category-page__table">
+        <table class="table admin-table">
+          <tbody>
           <tr>
             <td>ID: </td>
             <td>{{ category.id }}</td>
@@ -23,7 +24,7 @@
             <td>Раздел активен: </td>
             <td>
               <label>
-                <input v-model="options.isActive" class="checkbox visually-hidden" type="checkbox">
+                <input v-model="options.active" class="checkbox visually-hidden" type="checkbox">
                 <span class="checkbox-custom" />
               </label>
             </td>
@@ -32,7 +33,7 @@
             <td>Показывать на главной: </td>
             <td>
               <label>
-                <input v-model="options.showOnMain" class="checkbox visually-hidden" type="checkbox">
+                <input v-model="options.show_on_main" class="checkbox visually-hidden" type="checkbox">
                 <span class="checkbox-custom" />
               </label>
             </td>
@@ -53,11 +54,15 @@
               </label>
             </td>
           </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
       <div class="controls">
         <button class="button button--accent" title="Сохранить" @click="submitHandler">
           Сохранить
+        </button>
+        <button class="button button--danger" title="Удалить" @click="removeHandler">
+          Удалить
         </button>
       </div>
     </div>
@@ -77,27 +82,35 @@ export default {
     return {
       category: {},
       options: {
-        isActive: null,
+        active: null,
         sort: null,
         slug: null,
-        showOnMain: null
+        show_on_main: null
       }
     }
   },
   mounted () {
-    this.options.isActive = this.category.active
+    this.options.active = this.category.active
     this.options.sort = this.category.sort
     this.options.slug = this.category.slug
-    this.options.showOnMain = this.category.show_on_main
+    this.options.show_on_main = this.category.show_on_main
   },
   methods: {
     submitHandler () {
-      console.log(this.options)
+      categoriesApi(this.$axios).update(this.category.id, this.options)
+    },
+    removeHandler () {
+      categoriesApi(this.$axios).remove(this.category.id)
     }
   }
 }
 </script>
 
 <style lang="scss">
-
+  .admin-category-page {
+    padding: 20px 0;
+    &__table {
+      margin-bottom: 10px;
+    }
+  }
 </style>
