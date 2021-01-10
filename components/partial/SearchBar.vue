@@ -97,7 +97,7 @@ export default {
     padding: 10px 25px 10px 10px;
     font-size: 16px;
     border: 1px solid $color-border;
-    border-radius: 5px;
+    border-radius: $border-radius;
     transition: border-color 0.2s ease-in;
     outline: none;
     box-sizing: border-box;

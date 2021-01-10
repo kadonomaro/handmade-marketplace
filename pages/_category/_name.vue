@@ -32,6 +32,7 @@ export default {
   },
   async asyncData ({ $axios, params }) {
     const category = await categoriesApi($axios).getByName(params.name)
+    console.log(params)
     return { category }
   },
   data () {

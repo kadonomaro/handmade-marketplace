@@ -10,7 +10,7 @@ export function categoriesApi ($api) {
     },
     async getByName (name) {
       const response = await $api.$get(settings.url + 'categories')
-      return response.find(category => category.name === name)
+      return response.find(category => category.slug === name)
     }
   }
 }

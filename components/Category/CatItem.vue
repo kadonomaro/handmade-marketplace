@@ -1,20 +1,18 @@
 <template>
   <nuxt-link
     class="cat-item"
-    :to="'/category/' + category.name.toLowerCase()"
+    :to="'/category/' + category.slug"
   >
     <h2 class="cat-item__title">
       {{ category.display_name }}
     </h2>
     <div class="cat-item__image">
-      <img src="https://via.placeholder.com/250" :alt="category.name">
+      <img src="https://via.placeholder.com/250" :alt="category.display_name">
     </div>
   </nuxt-link>
 </template>
 
 <script>
-import { settings } from '@/server.settings'
-
 export default {
   name: 'CatItem',
   props: {
@@ -22,13 +20,7 @@ export default {
       type: Object,
       required: true
     }
-  },
-  data () {
-    return {
-      url: settings.url
-    }
   }
-
 }
 </script>
 
@@ -41,7 +33,7 @@ export default {
     text-decoration: none;
     background-color: #ffffff;
     border: 1px solid $color-border;
-    border-radius: 5px;
+    border-radius: $border-radius;
     box-shadow: 0 3px 8px 0 rgba(#74818d, 0.1);
     transition: color 0.1s ease-in, border-color 0.1s ease-in;
     &:hover {
