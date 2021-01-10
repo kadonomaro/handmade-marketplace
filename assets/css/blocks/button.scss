@@ -5,6 +5,7 @@
   font-size: 14px;
   font-weight: bold;
   white-space: nowrap;
+  text-decoration: none;
   background-color: $color-button;
   border: none;
   border-radius: 3px;
@@ -13,5 +14,27 @@
   outline: none;
   &:hover {
     background-color: darken($color-button, 7%);
+  }
+}
+
+.button--accent {
+  color: #ffffff;
+  background-color: $color-accent;
+  &:hover {
+    background-color: darken($color-accent, 7%);
+  }
+}
+.button--warning {
+  color: #ffffff;
+  background-color: $color-warning;
+  &:hover {
+    background-color: darken($color-warning, 7%);
+  }
+}
+.button--danger {
+  color: #ffffff;
+  background-color: $color-danger;
+  &:hover {
+    background-color: darken($color-danger, 7%);
   }
 }

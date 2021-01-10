@@ -1,12 +1,13 @@
 <template>
   <div class="a-categories-list">
+    <button class="button button--accent" title="Добавить">Добавить</button>
     <ul class="a-categories-list__list">
-      <li class="a-categories-list__item" v-for="category in list" :key="category.id">
+      <li v-for="category in list" :key="category.id" class="a-categories-list__item">
         <div class="a-category-item">
           <span class="a-category-item__title">{{ category.display_name }}</span>
           <div class="a-category-item__controls">
-            <button class="button" title="Открыть">Открыть</button>
-            <button class="button" title="Удалить">Удалить</button>
+            <nuxt-link class="button button--accent" :to="'admin/category/' + category.slug">Открыть</nuxt-link>
+            <button class="button button--danger" title="Удалить">Удалить</button>
           </div>
         </div>
       </li>
@@ -30,7 +31,7 @@ export default {
   .a-categories-list {
     &__list {
       margin: 0;
-      padding: 0;
+      padding: 10px 0;
       list-style: none;
     }
     &__item {
