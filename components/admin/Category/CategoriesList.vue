@@ -6,7 +6,7 @@
         <div class="a-category-item">
           <span class="a-category-item__title">{{ category.display_name }}</span>
           <div class="a-category-item__controls">
-            <nuxt-link class="button button--accent" :to="'admin/category/' + category.slug">Открыть</nuxt-link>
+            <nuxt-link class="button button--accent" :to="'/admin/category/' + category.slug">Открыть</nuxt-link>
             <button class="button button--danger" title="Удалить">Удалить</button>
           </div>
         </div>
@@ -53,7 +53,6 @@ export default {
     }
     &__title {
       font-size: 18px;
-      font-weight: bold;
     }
   }
 </style>

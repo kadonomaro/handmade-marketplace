@@ -89,6 +89,9 @@
               </tbody>
             </table>
           </app-tab>
+          <app-tab name="Товары">
+            <products-list :list="category.products" />
+          </app-tab>
         </app-tabs>
       </div>
       <div class="controls">
@@ -106,11 +109,13 @@
 <script>
 import { categoriesApi } from '@/api/categories.api'
 import AppTabs from '@/components/partial/Tabs/AppTabs'
+import ProductsList from '@/components/admin/Category/ProductsList'
 
 export default {
   name: 'AdminCategoryPage',
   components: {
-    AppTabs
+    AppTabs,
+    ProductsList
   },
   layout: 'admin',
   async asyncData ({ $axios, params }) {

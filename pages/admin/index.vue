@@ -1,14 +1,11 @@
 <template>
   <div class="admin-page">
-    <h1 class="admin-page__title">
-      Панель управления сайтом
-    </h1>
     <div class="admin-page__inner">
       <aside class="admin-page__side">
-        <button class="button" @click="setActiveComponent('CategoriesList', 'categories')">
+        <button class="button" :class="{ 'button--active': component.name === 'CategoriesList' }" @click="setActiveComponent('CategoriesList', 'categories')">
           Категории
         </button>
-        <button class="button" @click="setActiveComponent('ProductsList', 'products')">
+        <button class="button" :class="{ 'button--active' : component.name === 'ProductsList' }" @click="setActiveComponent('ProductsList', 'products')">
           Товары
         </button>
       </aside>
@@ -22,8 +19,8 @@
 <script>
 import { categoriesApi } from '@/api/categories.api'
 import { productsApi } from '@/api/products.api'
-import CategoriesList from '@/components/adminPage/Category/CategoriesList'
-import ProductsList from '@/components/adminPage/Category/ProductsList'
+import CategoriesList from '@/components/admin/Category/CategoriesList'
+import ProductsList from '@/components/admin/Category/ProductsList'
 
 export default {
   name: 'AdminPage',
