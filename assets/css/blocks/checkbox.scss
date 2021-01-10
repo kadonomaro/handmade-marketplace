@@ -1,6 +1,6 @@
 .checkbox {
     &:focus ~ .checkbox-custom {
-        border-color: darken($color: $color-border, $amount: 30%);
+        border-color: $color-accent;
     }
     &:checked ~ .checkbox-custom::before {
         opacity: 1;

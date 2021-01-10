@@ -1,5 +1,7 @@
-@import '@/assets/css/common.scss';
+@import 'common';
 
 /* Blocks */
-@import '@/assets/css/blocks/button.scss';
-@import '@/assets/css/blocks/checkbox.scss';
+@import 'blocks/button';
+@import 'blocks/input';
+@import 'blocks/checkbox';
+@import 'blocks/table';
