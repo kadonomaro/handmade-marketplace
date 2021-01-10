@@ -1,4 +1,4 @@
-import { settings } from '~/server.settings'
+import { settings } from '@/server.settings'
 
 export function productsApi ($api) {
   return {
@@ -7,6 +7,10 @@ export function productsApi ($api) {
     },
     async getById (id) {
       return await $api.$get(settings.url + 'products/' + id)
+    },
+    async getByName (name) {
+      const response = await $api.$get(settings.url + 'products')
+      return response.find(product => product.slug === name)
     }
   }
 }

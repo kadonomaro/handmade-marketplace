@@ -13,13 +13,13 @@
       <ul v-if="matchedProducts.length && !isExpanded" class="search-bar__list">
         <li v-for="product in matchedProducts" :key="product.id" class="search-bar__item" @click="onClick">
           <nuxt-link
-            :to="'/category/' + product.category.name.toLowerCase() + '/' + product.id"
+            :to="'/category/' + product.category.slug + '/' + product.slug"
             class="search-bar__link"
           >
             {{ product.title }}
           </nuxt-link>
           <nuxt-link
-            :to="'/category/' + product.category.name.toLowerCase()"
+            :to="'/category/' + product.category.slug"
             class="search-bar__link search-bar__link--highlighted"
           >
             в категории {{ product.category.displayName }}
@@ -52,10 +52,10 @@ export default {
     const products = await productsApi(this.$axios).getAll()
     this.productsNames = products.map((product) => {
       return {
-        id: product.id,
+        slug: product.slug,
         title: product.title,
         category: {
-          name: product.categories[0].name,
+          slug: product.categories[0].slug,
           displayName: product.categories[0].display_name
         }
       }

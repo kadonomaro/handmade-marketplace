@@ -1,7 +1,7 @@
 <template>
   <div class="product-card">
     <nuxt-link
-      :to="`/category/${$route.params.name || $route.params.product}/${product.id}`"
+      :to="`/category/${$route.params.name || $route.params.product}/${product.slug}`"
       class="product-card__link"
     >
       <img
@@ -10,13 +10,13 @@
       >
     </nuxt-link>
     <nuxt-link
-      :to="`/category/${$route.params.name || $route.params.product}/${product.id}`"
+      :to="`/category/${$route.params.name || $route.params.product}/${product.slug}`"
       class="product-card__link"
     >
       <span class="product-card__title">{{ product.title }}</span>
     </nuxt-link>
-    <div v-if="expanded && description" class="product-card__desc">
-      <p>{{ description }}</p>
+    <div v-if="expanded && product.description" class="product-card__desc">
+      <p>{{ product.description | description }}</p>
     </div>
     <div class="product-card__info">
       <span class="product-card__price">{{ product.price | currency('rub') }}</span>
@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import { settings } from '@/server.settings'
 import noPhoto from '@/assets/images/no-photo.jpg'
 
 export default {
@@ -48,7 +47,6 @@ export default {
   },
   data () {
     return {
-      url: settings.url,
       noPhoto
     }
   },

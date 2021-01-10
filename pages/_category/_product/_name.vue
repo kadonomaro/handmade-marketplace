@@ -63,7 +63,7 @@ export default {
     RelatedProducts
   },
   async asyncData ({ $axios, params }) {
-    const product = await productsApi($axios).getById(params.id)
+    const product = await productsApi($axios).getByName(params.name)
     const category = await categoriesApi($axios).getById(product.categories[0].id)
     const categoryProducts = category.products
     return { product, categoryProducts }
