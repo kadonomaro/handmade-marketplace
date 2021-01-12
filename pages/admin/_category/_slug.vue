@@ -150,7 +150,7 @@ export default {
       categoriesApi(this.$axios).update(this.category.id, this.options)
     },
     removeHandler () {
-      // categoriesApi(this.$axios).remove(this.category.id)
+      categoriesApi(this.$axios).remove(this.category.id)
     }
   }
 }
